@@ -1,0 +1,4813 @@
+{
+  "__inputs": [
+    {
+      "name": "DS_AZURE_DATA EXPLORER DATASOURCE",
+      "label": "Azure Data Explorer Datasource",
+      "description": "",
+      "type": "datasource",
+      "pluginId": "grafana-azure-data-explorer-datasource",
+      "pluginName": "Azure Data Explorer Datasource"
+    }
+  ],
+  "__elements": [],
+  "__requires": [
+    {
+      "type": "panel",
+      "id": "bargauge",
+      "name": "Bar gauge",
+      "version": ""
+    },
+    {
+      "type": "panel",
+      "id": "gauge",
+      "name": "Gauge",
+      "version": ""
+    },
+    {
+      "type": "grafana",
+      "id": "grafana",
+      "name": "Grafana",
+      "version": "8.4.2"
+    },
+    {
+      "type": "datasource",
+      "id": "grafana-azure-data-explorer-datasource",
+      "name": "Azure Data Explorer Datasource",
+      "version": "3.6.1"
+    },
+    {
+      "type": "panel",
+      "id": "heatmap",
+      "name": "Heatmap",
+      "version": ""
+    },
+    {
+      "type": "panel",
+      "id": "stat",
+      "name": "Stat",
+      "version": ""
+    },
+    {
+      "type": "panel",
+      "id": "table",
+      "name": "Table",
+      "version": ""
+    },
+    {
+      "type": "panel",
+      "id": "timeseries",
+      "name": "Time series",
+      "version": ""
+    }
+  ],
+  "annotations": {
+    "list": [
+      {
+        "builtIn": 1,
+        "datasource": "-- Grafana --",
+        "enable": true,
+        "hide": true,
+        "iconColor": "rgba(0, 211, 255, 1)",
+        "name": "Annotations & Alerts",
+        "target": {
+          "limit": 100,
+          "matchAny": false,
+          "tags": [],
+          "type": "dashboard"
+        },
+        "type": "dashboard"
+      }
+    ]
+  },
+  "description": "",
+  "editable": true,
+  "fiscalYearStartMonth": 0,
+  "graphTooltip": 0,
+  "id": null,
+  "links": [],
+  "liveNow": false,
+  "panels": [
+    {
+      "collapsed": false,
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 0
+      },
+      "id": 91,
+      "panels": [],
+      "title": "Packets",
+      "type": "row"
+    },
+    {
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 4,
+        "w": 24,
+        "x": 0,
+        "y": 1
+      },
+      "id": 89,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "area",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "text": {},
+        "textMode": "auto"
+      },
+      "pluginVersion": "8.4.2",
+      "targets": [
+        {
+          "database": "f12019",
+          "datasource": {
+            "type": "grafana-azure-data-explorer-datasource",
+            "uid": "${DS_AZURE_DATA EXPLORER DATASOURCE}"
+          },
+          "expression": {
+            "groupBy": {
+              "expressions": [],
+              "type": "and"
+            },
+            "reduce": {
+              "expressions": [],
+              "type": "and"
+            },
+            "where": {
+              "expressions": [],
+              "type": "and"
+            }
+          },
+          "pluginVersion": "3.6.1",
+          "query": "CarTelemetry\r\n| union CarStatus, Lap, Participant, Session\r\n| extend ingestionTime = ingestion_time() \r\n| where $__timeFilter(ingestionTime)\r\n| count\r\n",
+          "querySource": "raw",
+          "rawMode": true,
+          "refId": "A",
+          "resultFormat": "table"
+        }
+      ],
+      "title": "Packets Received",
+      "type": "stat"
+    },
+    {
+      "collapsed": true,
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 5
+      },
+      "id": 40,
+      "panels": [
+        {
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "thresholds"
+              },
+              "mappings": [],
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "green"
+                  },
+                  {
+                    "color": "red",
+                    "value": 80
+                  }
+                ]
+              }
+            },
+            "overrides": []
+          },
+          "gridPos": {
+            "h": 4,
+            "w": 3,
+            "x": 0,
+            "y": 6
+          },
+          "id": 28,
+          "options": {
+            "colorMode": "value",
+            "graphMode": "area",
+            "justifyMode": "auto",
+            "orientation": "auto",
+            "reduceOptions": {
+              "calcs": [
+                "lastNotNull"
+              ],
+              "fields": "/.*/",
+              "values": false
+            },
+            "textMode": "auto"
+          },
+          "pluginVersion": "8.4.2",
+          "targets": [
+            {
+              "database": "f12019",
+              "datasource": {
+                "type": "grafana-azure-data-explorer-datasource",
+                "uid": "${DS_AZURE_DATA EXPLORER DATASOURCE}"
+              },
+              "expression": {
+                "groupBy": {
+                  "expressions": [],
+                  "type": "and"
+                },
+                "reduce": {
+                  "expressions": [],
+                  "type": "and"
+                },
+                "where": {
+                  "expressions": [],
+                  "type": "and"
+                }
+              },
+              "pluginVersion": "3.7.0-beta1",
+              "query": "Participant\r\n| extend ingestionTime = ingestion_time() \r\n| where $__timeFilter(ingestionTime) and VehicleIndex == PlayerCarIndex \r\n| order by ingestionTime \r\n| take 1\r\n| project Name",
+              "querySource": "raw",
+              "rawMode": true,
+              "refId": "A",
+              "resultFormat": "table"
+            }
+          ],
+          "title": "Name",
+          "type": "stat"
+        },
+        {
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "thresholds"
+              },
+              "mappings": [],
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "green"
+                  },
+                  {
+                    "color": "red",
+                    "value": 80
+                  }
+                ]
+              }
+            },
+            "overrides": []
+          },
+          "gridPos": {
+            "h": 4,
+            "w": 3,
+            "x": 3,
+            "y": 6
+          },
+          "id": 32,
+          "options": {
+            "colorMode": "value",
+            "graphMode": "area",
+            "justifyMode": "auto",
+            "orientation": "auto",
+            "reduceOptions": {
+              "calcs": [
+                "lastNotNull"
+              ],
+              "fields": "/.*/",
+              "values": false
+            },
+            "textMode": "auto"
+          },
+          "pluginVersion": "8.4.2",
+          "targets": [
+            {
+              "database": "f12019",
+              "datasource": {
+                "type": "grafana-azure-data-explorer-datasource",
+                "uid": "${DS_AZURE_DATA EXPLORER DATASOURCE}"
+              },
+              "expression": {
+                "groupBy": {
+                  "expressions": [],
+                  "type": "and"
+                },
+                "reduce": {
+                  "expressions": [],
+                  "type": "and"
+                },
+                "where": {
+                  "expressions": [],
+                  "type": "and"
+                }
+              },
+              "pluginVersion": "3.7.0-beta1",
+              "query": "Participant\r\n| extend ingestionTime = ingestion_time() \r\n| where $__timeFilter(ingestionTime) and VehicleIndex == PlayerCarIndex \r\n| order by ingestionTime | take 1\r\n| extend DriverTeamId = TeamId\r\n| join  kind=rightsemi Teams  on $left.DriverTeamId == $right.Id\r\n| project Name\r\n",
+              "querySource": "raw",
+              "rawMode": true,
+              "refId": "A",
+              "resultFormat": "table"
+            }
+          ],
+          "title": "Team",
+          "type": "stat"
+        },
+        {
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "thresholds"
+              },
+              "mappings": [],
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "green"
+                  },
+                  {
+                    "color": "red",
+                    "value": 80
+                  }
+                ]
+              }
+            },
+            "overrides": []
+          },
+          "gridPos": {
+            "h": 4,
+            "w": 3,
+            "x": 6,
+            "y": 6
+          },
+          "id": 83,
+          "options": {
+            "colorMode": "value",
+            "graphMode": "area",
+            "justifyMode": "auto",
+            "orientation": "auto",
+            "reduceOptions": {
+              "calcs": [
+                "lastNotNull"
+              ],
+              "fields": "/.*/",
+              "values": false
+            },
+            "textMode": "auto"
+          },
+          "pluginVersion": "8.4.2",
+          "targets": [
+            {
+              "database": "f12019",
+              "datasource": {
+                "type": "grafana-azure-data-explorer-datasource",
+                "uid": "${DS_AZURE_DATA EXPLORER DATASOURCE}"
+              },
+              "expression": {
+                "groupBy": {
+                  "expressions": [],
+                  "type": "and"
+                },
+                "reduce": {
+                  "expressions": [],
+                  "type": "and"
+                },
+                "where": {
+                  "expressions": [],
+                  "type": "and"
+                }
+              },
+              "pluginVersion": "3.7.0-beta1",
+              "query": "Participant\r\n| extend ingestionTime = ingestion_time() \r\n| where $__timeFilter(ingestionTime) and VehicleIndex == PlayerCarIndex \r\n| order by ingestionTime | take 1\r\n| join  kind=rightsemi Nationalities  on $left.Nationality == $right.Id\r\n| project Name\r\n",
+              "querySource": "raw",
+              "rawMode": true,
+              "refId": "A",
+              "resultFormat": "table"
+            }
+          ],
+          "title": "Nationality",
+          "type": "stat"
+        },
+        {
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "thresholds"
+              },
+              "mappings": [],
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "yellow"
+                  }
+                ]
+              }
+            },
+            "overrides": []
+          },
+          "gridPos": {
+            "h": 4,
+            "w": 3,
+            "x": 9,
+            "y": 6
+          },
+          "id": 43,
+          "options": {
+            "colorMode": "value",
+            "graphMode": "area",
+            "justifyMode": "auto",
+            "orientation": "auto",
+            "reduceOptions": {
+              "calcs": [
+                "lastNotNull"
+              ],
+              "fields": "/.*/",
+              "values": false
+            },
+            "textMode": "auto"
+          },
+          "pluginVersion": "8.4.2",
+          "targets": [
+            {
+              "database": "f12019",
+              "datasource": {
+                "type": "grafana-azure-data-explorer-datasource",
+                "uid": "${DS_AZURE_DATA EXPLORER DATASOURCE}"
+              },
+              "expression": {
+                "groupBy": {
+                  "expressions": [],
+                  "type": "and"
+                },
+                "reduce": {
+                  "expressions": [],
+                  "type": "and"
+                },
+                "where": {
+                  "expressions": [],
+                  "type": "and"
+                }
+              },
+              "pluginVersion": "3.7.0-beta1",
+              "query": "Lap\r\n| extend ingestionTime = ingestion_time() \r\n| where $__timeFilter(ingestionTime) and VehicleIndex == PlayerCarIndex \r\n| order by ingestionTime, SessionTime \r\n| take 1\r\n| project CurrentLapNum  ",
+              "querySource": "raw",
+              "rawMode": true,
+              "refId": "A",
+              "resultFormat": "table"
+            }
+          ],
+          "title": "Current Lap",
+          "type": "stat"
+        },
+        {
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "thresholds"
+              },
+              "mappings": [],
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "green"
+                  },
+                  {
+                    "color": "green",
+                    "value": 3
+                  },
+                  {
+                    "color": "#EAB839",
+                    "value": 5
+                  },
+                  {
+                    "color": "red",
+                    "value": 10
+                  }
+                ]
+              }
+            },
+            "overrides": []
+          },
+          "gridPos": {
+            "h": 4,
+            "w": 3,
+            "x": 12,
+            "y": 6
+          },
+          "id": 30,
+          "options": {
+            "colorMode": "value",
+            "graphMode": "area",
+            "justifyMode": "auto",
+            "orientation": "auto",
+            "reduceOptions": {
+              "calcs": [
+                "lastNotNull"
+              ],
+              "fields": "/.*/",
+              "values": false
+            },
+            "textMode": "auto"
+          },
+          "pluginVersion": "8.4.2",
+          "targets": [
+            {
+              "database": "f12019",
+              "datasource": {
+                "type": "grafana-azure-data-explorer-datasource",
+                "uid": "${DS_AZURE_DATA EXPLORER DATASOURCE}"
+              },
+              "expression": {
+                "groupBy": {
+                  "expressions": [],
+                  "type": "and"
+                },
+                "reduce": {
+                  "expressions": [],
+                  "type": "and"
+                },
+                "where": {
+                  "expressions": [],
+                  "type": "and"
+                }
+              },
+              "pluginVersion": "3.7.0-beta1",
+              "query": "Lap\r\n| extend ingestionTime = ingestion_time() \r\n| where $__timeFilter(ingestionTime) and VehicleIndex == PlayerCarIndex \r\n| order by ingestionTime, SessionTime \r\n| take 1\r\n| project CarPosition   ",
+              "querySource": "raw",
+              "rawMode": true,
+              "refId": "A",
+              "resultFormat": "table"
+            }
+          ],
+          "title": "Car Position",
+          "type": "stat"
+        },
+        {
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "thresholds"
+              },
+              "mappings": [],
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "orange"
+                  }
+                ]
+              },
+              "unit": "s"
+            },
+            "overrides": []
+          },
+          "gridPos": {
+            "h": 4,
+            "w": 3,
+            "x": 15,
+            "y": 6
+          },
+          "id": 48,
+          "options": {
+            "colorMode": "value",
+            "graphMode": "area",
+            "justifyMode": "auto",
+            "orientation": "auto",
+            "reduceOptions": {
+              "calcs": [
+                "lastNotNull"
+              ],
+              "fields": "/.*/",
+              "values": false
+            },
+            "textMode": "auto"
+          },
+          "pluginVersion": "8.4.2",
+          "targets": [
+            {
+              "database": "f12019",
+              "datasource": {
+                "type": "grafana-azure-data-explorer-datasource",
+                "uid": "${DS_AZURE_DATA EXPLORER DATASOURCE}"
+              },
+              "expression": {
+                "groupBy": {
+                  "expressions": [],
+                  "type": "and"
+                },
+                "reduce": {
+                  "expressions": [],
+                  "type": "and"
+                },
+                "where": {
+                  "expressions": [],
+                  "type": "and"
+                }
+              },
+              "pluginVersion": "3.7.0-beta1",
+              "query": "Lap\r\n| extend ingestionTime = ingestion_time() \r\n| where $__timeFilter(ingestionTime) and VehicleIndex == PlayerCarIndex \r\n| order by ingestionTime, SessionTime \r\n| take 1\r\n| project CurrentLapTime  ",
+              "querySource": "raw",
+              "rawMode": true,
+              "refId": "A",
+              "resultFormat": "table"
+            }
+          ],
+          "title": "Current Lap Time",
+          "type": "stat"
+        },
+        {
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "thresholds"
+              },
+              "mappings": [],
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "green"
+                  }
+                ]
+              },
+              "unit": "s"
+            },
+            "overrides": []
+          },
+          "gridPos": {
+            "h": 4,
+            "w": 3,
+            "x": 18,
+            "y": 6
+          },
+          "id": 50,
+          "options": {
+            "colorMode": "value",
+            "graphMode": "area",
+            "justifyMode": "auto",
+            "orientation": "auto",
+            "reduceOptions": {
+              "calcs": [
+                "lastNotNull"
+              ],
+              "fields": "/.*/",
+              "values": false
+            },
+            "textMode": "auto"
+          },
+          "pluginVersion": "8.4.2",
+          "targets": [
+            {
+              "database": "f12019",
+              "datasource": {
+                "type": "grafana-azure-data-explorer-datasource",
+                "uid": "${DS_AZURE_DATA EXPLORER DATASOURCE}"
+              },
+              "expression": {
+                "groupBy": {
+                  "expressions": [],
+                  "type": "and"
+                },
+                "reduce": {
+                  "expressions": [],
+                  "type": "and"
+                },
+                "where": {
+                  "expressions": [],
+                  "type": "and"
+                }
+              },
+              "pluginVersion": "3.7.0-beta1",
+              "query": "Lap\r\n| extend ingestionTime = ingestion_time() \r\n| where $__timeFilter(ingestionTime) and VehicleIndex == PlayerCarIndex \r\n| order by ingestionTime, SessionTime \r\n| take 1\r\n| project LastLapTime  ",
+              "querySource": "raw",
+              "rawMode": true,
+              "refId": "A",
+              "resultFormat": "table"
+            }
+          ],
+          "title": "Last Lap Time",
+          "type": "stat"
+        },
+        {
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "thresholds"
+              },
+              "mappings": [],
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "green"
+                  }
+                ]
+              },
+              "unit": "s"
+            },
+            "overrides": []
+          },
+          "gridPos": {
+            "h": 4,
+            "w": 3,
+            "x": 21,
+            "y": 6
+          },
+          "id": 49,
+          "options": {
+            "colorMode": "value",
+            "graphMode": "area",
+            "justifyMode": "auto",
+            "orientation": "auto",
+            "reduceOptions": {
+              "calcs": [
+                "lastNotNull"
+              ],
+              "fields": "/.*/",
+              "values": false
+            },
+            "textMode": "auto"
+          },
+          "pluginVersion": "8.4.2",
+          "targets": [
+            {
+              "database": "f12019",
+              "datasource": {
+                "type": "grafana-azure-data-explorer-datasource",
+                "uid": "${DS_AZURE_DATA EXPLORER DATASOURCE}"
+              },
+              "expression": {
+                "groupBy": {
+                  "expressions": [],
+                  "type": "and"
+                },
+                "reduce": {
+                  "expressions": [],
+                  "type": "and"
+                },
+                "where": {
+                  "expressions": [],
+                  "type": "and"
+                }
+              },
+              "pluginVersion": "3.7.0-beta1",
+              "query": "Lap\r\n| extend ingestionTime = ingestion_time() \r\n| where $__timeFilter(ingestionTime) and VehicleIndex == PlayerCarIndex \r\n| order by ingestionTime, SessionTime \r\n| take 1\r\n| project BestLapTime  ",
+              "querySource": "raw",
+              "rawMode": true,
+              "refId": "A",
+              "resultFormat": "table"
+            }
+          ],
+          "title": "Best Lap Time",
+          "type": "stat"
+        },
+        {
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "thresholds"
+              },
+              "mappings": [
+                {
+                  "options": {
+                    "0": {
+                      "color": "red",
+                      "index": 0,
+                      "text": "In Garage"
+                    },
+                    "1": {
+                      "color": "orange",
+                      "index": 1,
+                      "text": "Flying Lap"
+                    },
+                    "2": {
+                      "color": "blue",
+                      "index": 2,
+                      "text": "In Lap"
+                    },
+                    "3": {
+                      "color": "yellow",
+                      "index": 3,
+                      "text": "Out Lap"
+                    },
+                    "4": {
+                      "color": "green",
+                      "index": 4,
+                      "text": "On track"
+                    }
+                  },
+                  "type": "value"
+                }
+              ],
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "green"
+                  },
+                  {
+                    "color": "red",
+                    "value": 80
+                  }
+                ]
+              }
+            },
+            "overrides": []
+          },
+          "gridPos": {
+            "h": 4,
+            "w": 3,
+            "x": 0,
+            "y": 10
+          },
+          "id": 44,
+          "options": {
+            "colorMode": "value",
+            "graphMode": "area",
+            "justifyMode": "auto",
+            "orientation": "auto",
+            "reduceOptions": {
+              "calcs": [
+                "lastNotNull"
+              ],
+              "fields": "/.*/",
+              "values": false
+            },
+            "textMode": "auto"
+          },
+          "pluginVersion": "8.4.2",
+          "targets": [
+            {
+              "database": "f12019",
+              "datasource": {
+                "type": "grafana-azure-data-explorer-datasource",
+                "uid": "${DS_AZURE_DATA EXPLORER DATASOURCE}"
+              },
+              "expression": {
+                "groupBy": {
+                  "expressions": [],
+                  "type": "and"
+                },
+                "reduce": {
+                  "expressions": [],
+                  "type": "and"
+                },
+                "where": {
+                  "expressions": [],
+                  "type": "and"
+                }
+              },
+              "pluginVersion": "3.7.0-beta1",
+              "query": "Lap\r\n| extend ingestionTime = ingestion_time() \r\n| where $__timeFilter(ingestionTime) and VehicleIndex == PlayerCarIndex \r\n| order by ingestionTime, SessionTime \r\n| take 1\r\n| project DriverStatus",
+              "querySource": "raw",
+              "rawMode": true,
+              "refId": "A",
+              "resultFormat": "table"
+            }
+          ],
+          "title": "Driver Status",
+          "type": "stat"
+        },
+        {
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "thresholds"
+              },
+              "mappings": [],
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "green"
+                  }
+                ]
+              },
+              "unit": "lengthm"
+            },
+            "overrides": []
+          },
+          "gridPos": {
+            "h": 4,
+            "w": 3,
+            "x": 3,
+            "y": 10
+          },
+          "id": 46,
+          "options": {
+            "colorMode": "value",
+            "graphMode": "area",
+            "justifyMode": "auto",
+            "orientation": "auto",
+            "reduceOptions": {
+              "calcs": [
+                "lastNotNull"
+              ],
+              "fields": "/.*/",
+              "values": false
+            },
+            "textMode": "auto"
+          },
+          "pluginVersion": "8.4.2",
+          "targets": [
+            {
+              "database": "f12019",
+              "datasource": {
+                "type": "grafana-azure-data-explorer-datasource",
+                "uid": "${DS_AZURE_DATA EXPLORER DATASOURCE}"
+              },
+              "expression": {
+                "groupBy": {
+                  "expressions": [],
+                  "type": "and"
+                },
+                "reduce": {
+                  "expressions": [],
+                  "type": "and"
+                },
+                "where": {
+                  "expressions": [],
+                  "type": "and"
+                }
+              },
+              "pluginVersion": "3.7.0-beta1",
+              "query": "Lap\r\n| extend ingestionTime = ingestion_time() \r\n| where $__timeFilter(ingestionTime) and VehicleIndex == PlayerCarIndex \r\n| order by ingestionTime, SessionTime \r\n| take 1\r\n| project LapDistance  ",
+              "querySource": "raw",
+              "rawMode": true,
+              "refId": "A",
+              "resultFormat": "table"
+            }
+          ],
+          "title": "Lap Distance",
+          "type": "stat"
+        },
+        {
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "thresholds"
+              },
+              "mappings": [],
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "green"
+                  }
+                ]
+              },
+              "unit": "lengthm"
+            },
+            "overrides": []
+          },
+          "gridPos": {
+            "h": 4,
+            "w": 3,
+            "x": 6,
+            "y": 10
+          },
+          "id": 47,
+          "options": {
+            "colorMode": "value",
+            "graphMode": "area",
+            "justifyMode": "auto",
+            "orientation": "auto",
+            "reduceOptions": {
+              "calcs": [
+                "lastNotNull"
+              ],
+              "fields": "/.*/",
+              "values": false
+            },
+            "textMode": "auto"
+          },
+          "pluginVersion": "8.4.2",
+          "targets": [
+            {
+              "database": "f12019",
+              "datasource": {
+                "type": "grafana-azure-data-explorer-datasource",
+                "uid": "${DS_AZURE_DATA EXPLORER DATASOURCE}"
+              },
+              "expression": {
+                "groupBy": {
+                  "expressions": [],
+                  "type": "and"
+                },
+                "reduce": {
+                  "expressions": [],
+                  "type": "and"
+                },
+                "where": {
+                  "expressions": [],
+                  "type": "and"
+                }
+              },
+              "pluginVersion": "3.7.0-beta1",
+              "query": "Lap\r\n| extend ingestionTime = ingestion_time() \r\n| where $__timeFilter(ingestionTime) and VehicleIndex == PlayerCarIndex \r\n| order by ingestionTime, SessionTime \r\n| take 1\r\n| project TotalDistance  ",
+              "querySource": "raw",
+              "rawMode": true,
+              "refId": "A",
+              "resultFormat": "table"
+            }
+          ],
+          "title": "Total Distance",
+          "type": "stat"
+        },
+        {
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "thresholds"
+              },
+              "mappings": [],
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "green"
+                  },
+                  {
+                    "color": "orange",
+                    "value": 1
+                  }
+                ]
+              },
+              "unit": "s"
+            },
+            "overrides": []
+          },
+          "gridPos": {
+            "h": 4,
+            "w": 3,
+            "x": 9,
+            "y": 10
+          },
+          "id": 54,
+          "options": {
+            "colorMode": "value",
+            "graphMode": "area",
+            "justifyMode": "auto",
+            "orientation": "auto",
+            "reduceOptions": {
+              "calcs": [
+                "lastNotNull"
+              ],
+              "fields": "/.*/",
+              "values": false
+            },
+            "textMode": "auto"
+          },
+          "pluginVersion": "8.4.2",
+          "targets": [
+            {
+              "database": "f12019",
+              "datasource": {
+                "type": "grafana-azure-data-explorer-datasource",
+                "uid": "${DS_AZURE_DATA EXPLORER DATASOURCE}"
+              },
+              "expression": {
+                "groupBy": {
+                  "expressions": [],
+                  "type": "and"
+                },
+                "reduce": {
+                  "expressions": [],
+                  "type": "and"
+                },
+                "where": {
+                  "expressions": [],
+                  "type": "and"
+                }
+              },
+              "pluginVersion": "3.7.0-beta1",
+              "query": "Lap\r\n| extend ingestionTime = ingestion_time() \r\n| where $__timeFilter(ingestionTime) and VehicleIndex == PlayerCarIndex \r\n| order by ingestionTime, SessionTime \r\n| take 1\r\n| project TimePenalties   ",
+              "querySource": "raw",
+              "rawMode": true,
+              "refId": "A",
+              "resultFormat": "table"
+            }
+          ],
+          "title": "Time penalties",
+          "type": "stat"
+        },
+        {
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "thresholds"
+              },
+              "mappings": [
+                {
+                  "options": {
+                    "0": {
+                      "index": 0,
+                      "text": "None"
+                    },
+                    "1": {
+                      "color": "orange",
+                      "index": 1,
+                      "text": "Pitting"
+                    },
+                    "2": {
+                      "color": "red",
+                      "index": 2,
+                      "text": "In Pit Area"
+                    }
+                  },
+                  "type": "value"
+                }
+              ],
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "green"
+                  },
+                  {
+                    "color": "red",
+                    "value": 80
+                  }
+                ]
+              }
+            },
+            "overrides": []
+          },
+          "gridPos": {
+            "h": 4,
+            "w": 3,
+            "x": 12,
+            "y": 10
+          },
+          "id": 52,
+          "options": {
+            "colorMode": "value",
+            "graphMode": "area",
+            "justifyMode": "auto",
+            "orientation": "auto",
+            "reduceOptions": {
+              "calcs": [
+                "lastNotNull"
+              ],
+              "fields": "/.*/",
+              "values": false
+            },
+            "textMode": "auto"
+          },
+          "pluginVersion": "8.4.2",
+          "targets": [
+            {
+              "database": "f12019",
+              "datasource": {
+                "type": "grafana-azure-data-explorer-datasource",
+                "uid": "${DS_AZURE_DATA EXPLORER DATASOURCE}"
+              },
+              "expression": {
+                "groupBy": {
+                  "expressions": [],
+                  "type": "and"
+                },
+                "reduce": {
+                  "expressions": [],
+                  "type": "and"
+                },
+                "where": {
+                  "expressions": [],
+                  "type": "and"
+                }
+              },
+              "pluginVersion": "3.7.0-beta1",
+              "query": "Lap\r\n| extend ingestionTime = ingestion_time() \r\n| where $__timeFilter(ingestionTime) and VehicleIndex == PlayerCarIndex \r\n| order by ingestionTime, SessionTime \r\n| take 1\r\n| project PitStatus",
+              "querySource": "raw",
+              "rawMode": true,
+              "refId": "A",
+              "resultFormat": "table"
+            }
+          ],
+          "title": "Pit Status",
+          "type": "stat"
+        },
+        {
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "thresholds"
+              },
+              "mappings": [],
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "green"
+                  },
+                  {
+                    "color": "red",
+                    "value": 80
+                  }
+                ]
+              }
+            },
+            "overrides": []
+          },
+          "gridPos": {
+            "h": 4,
+            "w": 3,
+            "x": 15,
+            "y": 10
+          },
+          "id": 45,
+          "options": {
+            "colorMode": "value",
+            "graphMode": "area",
+            "justifyMode": "auto",
+            "orientation": "auto",
+            "reduceOptions": {
+              "calcs": [
+                "lastNotNull"
+              ],
+              "fields": "/.*/",
+              "values": false
+            },
+            "textMode": "auto"
+          },
+          "pluginVersion": "8.4.2",
+          "targets": [
+            {
+              "database": "f12019",
+              "datasource": {
+                "type": "grafana-azure-data-explorer-datasource",
+                "uid": "${DS_AZURE_DATA EXPLORER DATASOURCE}"
+              },
+              "expression": {
+                "groupBy": {
+                  "expressions": [],
+                  "type": "and"
+                },
+                "reduce": {
+                  "expressions": [],
+                  "type": "and"
+                },
+                "where": {
+                  "expressions": [],
+                  "type": "and"
+                }
+              },
+              "pluginVersion": "3.7.0-beta1",
+              "query": "Lap\r\n| extend ingestionTime = ingestion_time() \r\n| where $__timeFilter(ingestionTime) and VehicleIndex == PlayerCarIndex \r\n| order by ingestionTime, SessionTime \r\n| take 1\r\n| project GridPosition  ",
+              "querySource": "raw",
+              "rawMode": true,
+              "refId": "A",
+              "resultFormat": "table"
+            }
+          ],
+          "title": "Grid Position",
+          "type": "stat"
+        },
+        {
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "thresholds"
+              },
+              "mappings": [
+                {
+                  "options": {
+                    "0": {
+                      "color": "red",
+                      "index": 0,
+                      "text": "Invalid"
+                    },
+                    "1": {
+                      "color": "orange",
+                      "index": 1,
+                      "text": "Inactive"
+                    },
+                    "2": {
+                      "color": "green",
+                      "index": 2,
+                      "text": "Active"
+                    },
+                    "3": {
+                      "color": "yellow",
+                      "index": 3,
+                      "text": "Finished"
+                    },
+                    "4": {
+                      "color": "red",
+                      "index": 4,
+                      "text": "Disqualified"
+                    },
+                    "5": {
+                      "color": "orange",
+                      "index": 5,
+                      "text": "Not Classified"
+                    },
+                    "6": {
+                      "color": "orange",
+                      "index": 6,
+                      "text": "Retiring"
+                    }
+                  },
+                  "type": "value"
+                }
+              ],
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "green"
+                  },
+                  {
+                    "color": "red",
+                    "value": 80
+                  }
+                ]
+              }
+            },
+            "overrides": []
+          },
+          "gridPos": {
+            "h": 4,
+            "w": 3,
+            "x": 18,
+            "y": 10
+          },
+          "id": 53,
+          "options": {
+            "colorMode": "value",
+            "graphMode": "area",
+            "justifyMode": "auto",
+            "orientation": "auto",
+            "reduceOptions": {
+              "calcs": [
+                "lastNotNull"
+              ],
+              "fields": "/.*/",
+              "values": false
+            },
+            "textMode": "auto"
+          },
+          "pluginVersion": "8.4.2",
+          "targets": [
+            {
+              "database": "f12019",
+              "datasource": {
+                "type": "grafana-azure-data-explorer-datasource",
+                "uid": "${DS_AZURE_DATA EXPLORER DATASOURCE}"
+              },
+              "expression": {
+                "groupBy": {
+                  "expressions": [],
+                  "type": "and"
+                },
+                "reduce": {
+                  "expressions": [],
+                  "type": "and"
+                },
+                "where": {
+                  "expressions": [],
+                  "type": "and"
+                }
+              },
+              "pluginVersion": "3.7.0-beta1",
+              "query": "Lap\r\n| extend ingestionTime = ingestion_time() \r\n| where $__timeFilter(ingestionTime) and VehicleIndex == PlayerCarIndex \r\n| order by ingestionTime, SessionTime \r\n| take 1\r\n| project ResultStatus",
+              "querySource": "raw",
+              "rawMode": true,
+              "refId": "A",
+              "resultFormat": "table"
+            }
+          ],
+          "title": "Result Status",
+          "type": "stat"
+        },
+        {
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "thresholds"
+              },
+              "mappings": [],
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "green"
+                  }
+                ]
+              }
+            },
+            "overrides": []
+          },
+          "gridPos": {
+            "h": 4,
+            "w": 3,
+            "x": 21,
+            "y": 10
+          },
+          "id": 24,
+          "options": {
+            "colorMode": "value",
+            "graphMode": "area",
+            "justifyMode": "auto",
+            "orientation": "auto",
+            "reduceOptions": {
+              "calcs": [
+                "lastNotNull"
+              ],
+              "fields": "",
+              "values": false
+            },
+            "textMode": "auto"
+          },
+          "pluginVersion": "8.4.2",
+          "targets": [
+            {
+              "database": "f12019",
+              "datasource": {
+                "type": "grafana-azure-data-explorer-datasource",
+                "uid": "${DS_AZURE_DATA EXPLORER DATASOURCE}"
+              },
+              "expression": {
+                "groupBy": {
+                  "expressions": [],
+                  "type": "and"
+                },
+                "reduce": {
+                  "expressions": [],
+                  "type": "and"
+                },
+                "where": {
+                  "expressions": [],
+                  "type": "and"
+                }
+              },
+              "pluginVersion": "3.7.0-beta1",
+              "query": "\r\nSession\r\n| extend ingestionTime = ingestion_time() \r\n| where  $__timeFilter(ingestionTime)\r\n| order by ingestionTime , SessionTime\r\n| take 1 \r\n| project TotalLaps ",
+              "querySource": "raw",
+              "rawMode": true,
+              "refId": "A",
+              "resultFormat": "table"
+            }
+          ],
+          "title": "Total Laps",
+          "type": "stat"
+        }
+      ],
+      "title": "Driver",
+      "type": "row"
+    },
+    {
+      "collapsed": true,
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 6
+      },
+      "id": 42,
+      "panels": [
+        {
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "thresholds"
+              },
+              "mappings": [],
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "orange"
+                  }
+                ]
+              },
+              "unit": "s"
+            },
+            "overrides": []
+          },
+          "gridPos": {
+            "h": 4,
+            "w": 3,
+            "x": 0,
+            "y": 7
+          },
+          "id": 22,
+          "options": {
+            "colorMode": "value",
+            "graphMode": "area",
+            "justifyMode": "auto",
+            "orientation": "auto",
+            "reduceOptions": {
+              "calcs": [
+                "lastNotNull"
+              ],
+              "fields": "/.*/",
+              "values": false
+            },
+            "textMode": "auto"
+          },
+          "pluginVersion": "8.4.2",
+          "targets": [
+            {
+              "database": "f12019",
+              "datasource": {
+                "type": "grafana-azure-data-explorer-datasource",
+                "uid": "${DS_AZURE_DATA EXPLORER DATASOURCE}"
+              },
+              "expression": {
+                "groupBy": {
+                  "expressions": [],
+                  "type": "and"
+                },
+                "reduce": {
+                  "expressions": [],
+                  "type": "and"
+                },
+                "where": {
+                  "expressions": [],
+                  "type": "and"
+                }
+              },
+              "pluginVersion": "3.7.0-beta1",
+              "query": "Session\r\n| extend ingestionTime = ingestion_time() \r\n| where  $__timeFilter(ingestionTime)\r\n| order by ingestionTime , SessionTime \r\n| take 1 \r\n| project SessionTime",
+              "querySource": "raw",
+              "rawMode": true,
+              "refId": "A",
+              "resultFormat": "table"
+            }
+          ],
+          "title": "Session Time",
+          "type": "stat"
+        },
+        {
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "thresholds"
+              },
+              "mappings": [
+                {
+                  "options": {
+                    "0": {
+                      "index": 0,
+                      "text": "Clear"
+                    },
+                    "1": {
+                      "color": "orange",
+                      "index": 1,
+                      "text": "Light cloud"
+                    },
+                    "2": {
+                      "color": "yellow",
+                      "index": 2,
+                      "text": "Overcast"
+                    },
+                    "3": {
+                      "color": "blue",
+                      "index": 3,
+                      "text": "Light rain"
+                    },
+                    "4": {
+                      "color": "purple",
+                      "index": 4,
+                      "text": "Heavy rain"
+                    },
+                    "5": {
+                      "color": "red",
+                      "index": 5,
+                      "text": "Storm"
+                    }
+                  },
+                  "type": "value"
+                }
+              ],
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "green"
+                  }
+                ]
+              }
+            },
+            "overrides": []
+          },
+          "gridPos": {
+            "h": 4,
+            "w": 3,
+            "x": 3,
+            "y": 7
+          },
+          "id": 58,
+          "options": {
+            "colorMode": "value",
+            "graphMode": "area",
+            "justifyMode": "auto",
+            "orientation": "auto",
+            "reduceOptions": {
+              "calcs": [
+                "lastNotNull"
+              ],
+              "fields": "",
+              "values": false
+            },
+            "textMode": "auto"
+          },
+          "pluginVersion": "8.4.2",
+          "targets": [
+            {
+              "database": "f12019",
+              "datasource": {
+                "type": "grafana-azure-data-explorer-datasource",
+                "uid": "${DS_AZURE_DATA EXPLORER DATASOURCE}"
+              },
+              "expression": {
+                "groupBy": {
+                  "expressions": [],
+                  "type": "and"
+                },
+                "reduce": {
+                  "expressions": [],
+                  "type": "and"
+                },
+                "where": {
+                  "expressions": [],
+                  "type": "and"
+                }
+              },
+              "pluginVersion": "3.7.0-beta1",
+              "query": "\r\nSession\r\n| extend ingestionTime = ingestion_time() \r\n| where  $__timeFilter(ingestionTime)\r\n| order by ingestionTime , SessionTime\r\n| take 1 \r\n| project Weather  ",
+              "querySource": "raw",
+              "rawMode": true,
+              "refId": "A",
+              "resultFormat": "table"
+            }
+          ],
+          "title": "Weather",
+          "type": "stat"
+        },
+        {
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "thresholds"
+              },
+              "mappings": [],
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "green"
+                  },
+                  {
+                    "color": "red",
+                    "value": 80
+                  }
+                ]
+              }
+            },
+            "overrides": []
+          },
+          "gridPos": {
+            "h": 4,
+            "w": 3,
+            "x": 6,
+            "y": 7
+          },
+          "id": 34,
+          "options": {
+            "colorMode": "value",
+            "graphMode": "area",
+            "justifyMode": "auto",
+            "orientation": "auto",
+            "reduceOptions": {
+              "calcs": [
+                "lastNotNull"
+              ],
+              "fields": "",
+              "values": false
+            },
+            "textMode": "auto"
+          },
+          "pluginVersion": "8.4.2",
+          "targets": [
+            {
+              "database": "f12019",
+              "datasource": {
+                "type": "grafana-azure-data-explorer-datasource",
+                "uid": "${DS_AZURE_DATA EXPLORER DATASOURCE}"
+              },
+              "expression": {
+                "groupBy": {
+                  "expressions": [],
+                  "type": "and"
+                },
+                "reduce": {
+                  "expressions": [],
+                  "type": "and"
+                },
+                "where": {
+                  "expressions": [],
+                  "type": "and"
+                }
+              },
+              "pluginVersion": "3.7.0-beta1",
+              "query": "Participant\r\n| extend ingestionTime = ingestion_time() \r\n| where VehicleIndex == PlayerCarIndex and $__timeFilter(ingestionTime)\r\n| order by ingestionTime \r\n| take 1\r\n| project NumOfActiveCars ",
+              "querySource": "raw",
+              "rawMode": true,
+              "refId": "A",
+              "resultFormat": "table"
+            }
+          ],
+          "title": "Active Cars",
+          "type": "stat"
+        },
+        {
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "thresholds"
+              },
+              "mappings": [],
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "green"
+                  },
+                  {
+                    "color": "red",
+                    "value": 80
+                  }
+                ]
+              }
+            },
+            "overrides": []
+          },
+          "gridPos": {
+            "h": 4,
+            "w": 3,
+            "x": 9,
+            "y": 7
+          },
+          "id": 62,
+          "options": {
+            "colorMode": "value",
+            "graphMode": "area",
+            "justifyMode": "auto",
+            "orientation": "auto",
+            "reduceOptions": {
+              "calcs": [
+                "lastNotNull"
+              ],
+              "fields": "/.*/",
+              "values": false
+            },
+            "textMode": "auto"
+          },
+          "pluginVersion": "8.4.2",
+          "targets": [
+            {
+              "database": "f12019",
+              "datasource": {
+                "type": "grafana-azure-data-explorer-datasource",
+                "uid": "${DS_AZURE_DATA EXPLORER DATASOURCE}"
+              },
+              "expression": {
+                "groupBy": {
+                  "expressions": [],
+                  "type": "and"
+                },
+                "reduce": {
+                  "expressions": [],
+                  "type": "and"
+                },
+                "where": {
+                  "expressions": [],
+                  "type": "and"
+                }
+              },
+              "pluginVersion": "3.7.0-beta1",
+              "query": "Session\r\n| extend ingestionTime = ingestion_time() \r\n| where  $__timeFilter(ingestionTime)\r\n| order by ingestionTime, SessionTime | take 1\r\n| join  kind=rightsemi Tracks on $left.TrackId == $right.Id\r\n| project Name",
+              "querySource": "raw",
+              "rawMode": true,
+              "refId": "A",
+              "resultFormat": "table"
+            }
+          ],
+          "title": "Track",
+          "type": "stat"
+        },
+        {
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "thresholds"
+              },
+              "mappings": [],
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "green"
+                  }
+                ]
+              },
+              "unit": "s"
+            },
+            "overrides": []
+          },
+          "gridPos": {
+            "h": 4,
+            "w": 3,
+            "x": 12,
+            "y": 7
+          },
+          "id": 56,
+          "options": {
+            "colorMode": "value",
+            "graphMode": "area",
+            "justifyMode": "auto",
+            "orientation": "auto",
+            "reduceOptions": {
+              "calcs": [
+                "lastNotNull"
+              ],
+              "fields": "",
+              "values": false
+            },
+            "textMode": "auto"
+          },
+          "pluginVersion": "8.4.2",
+          "targets": [
+            {
+              "database": "f12019",
+              "datasource": {
+                "type": "grafana-azure-data-explorer-datasource",
+                "uid": "${DS_AZURE_DATA EXPLORER DATASOURCE}"
+              },
+              "expression": {
+                "groupBy": {
+                  "expressions": [],
+                  "type": "and"
+                },
+                "reduce": {
+                  "expressions": [],
+                  "type": "and"
+                },
+                "where": {
+                  "expressions": [],
+                  "type": "and"
+                }
+              },
+              "pluginVersion": "3.7.0-beta1",
+              "query": "\r\nSession\r\n| extend ingestionTime = ingestion_time() \r\n| where  $__timeFilter(ingestionTime)\r\n| order by ingestionTime , SessionTime\r\n| take 1 \r\n| project SessionDuration  ",
+              "querySource": "raw",
+              "rawMode": true,
+              "refId": "A",
+              "resultFormat": "table"
+            }
+          ],
+          "title": "Session Duration",
+          "type": "stat"
+        },
+        {
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "thresholds"
+              },
+              "mappings": [],
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "green"
+                  }
+                ]
+              },
+              "unit": "s"
+            },
+            "overrides": []
+          },
+          "gridPos": {
+            "h": 4,
+            "w": 3,
+            "x": 15,
+            "y": 7
+          },
+          "id": 57,
+          "options": {
+            "colorMode": "value",
+            "graphMode": "area",
+            "justifyMode": "auto",
+            "orientation": "auto",
+            "reduceOptions": {
+              "calcs": [
+                "lastNotNull"
+              ],
+              "fields": "",
+              "values": false
+            },
+            "textMode": "auto"
+          },
+          "pluginVersion": "8.4.2",
+          "targets": [
+            {
+              "database": "f12019",
+              "datasource": {
+                "type": "grafana-azure-data-explorer-datasource",
+                "uid": "${DS_AZURE_DATA EXPLORER DATASOURCE}"
+              },
+              "expression": {
+                "groupBy": {
+                  "expressions": [],
+                  "type": "and"
+                },
+                "reduce": {
+                  "expressions": [],
+                  "type": "and"
+                },
+                "where": {
+                  "expressions": [],
+                  "type": "and"
+                }
+              },
+              "pluginVersion": "3.7.0-beta1",
+              "query": "\r\nSession\r\n| extend ingestionTime = ingestion_time() \r\n| where  $__timeFilter(ingestionTime)\r\n| order by ingestionTime , SessionTime\r\n| take 1 \r\n| project SessionTimeLeft ",
+              "querySource": "raw",
+              "rawMode": true,
+              "refId": "A",
+              "resultFormat": "table"
+            }
+          ],
+          "title": "SessionTime Left",
+          "type": "stat"
+        },
+        {
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "thresholds"
+              },
+              "mappings": [],
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "green"
+                  },
+                  {
+                    "color": "red",
+                    "value": 80
+                  }
+                ]
+              },
+              "unit": "celsius"
+            },
+            "overrides": []
+          },
+          "gridPos": {
+            "h": 4,
+            "w": 3,
+            "x": 18,
+            "y": 7
+          },
+          "id": 26,
+          "options": {
+            "colorMode": "value",
+            "graphMode": "area",
+            "justifyMode": "auto",
+            "orientation": "auto",
+            "reduceOptions": {
+              "calcs": [
+                "lastNotNull"
+              ],
+              "fields": "",
+              "values": false
+            },
+            "textMode": "auto"
+          },
+          "pluginVersion": "8.4.2",
+          "targets": [
+            {
+              "database": "f12019",
+              "datasource": {
+                "type": "grafana-azure-data-explorer-datasource",
+                "uid": "${DS_AZURE_DATA EXPLORER DATASOURCE}"
+              },
+              "expression": {
+                "groupBy": {
+                  "expressions": [],
+                  "type": "and"
+                },
+                "reduce": {
+                  "expressions": [],
+                  "type": "and"
+                },
+                "where": {
+                  "expressions": [],
+                  "type": "and"
+                }
+              },
+              "pluginVersion": "3.7.0-beta1",
+              "query": "\r\nSession\r\n| extend ingestionTime = ingestion_time() \r\n| where  $__timeFilter(ingestionTime)\r\n| order by ingestionTime , SessionTime \r\n| take 1 \r\n| project AirTemp ",
+              "querySource": "raw",
+              "rawMode": true,
+              "refId": "A",
+              "resultFormat": "table"
+            }
+          ],
+          "title": "Air Temp",
+          "type": "stat"
+        },
+        {
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "thresholds"
+              },
+              "mappings": [],
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "green"
+                  },
+                  {
+                    "color": "red",
+                    "value": 80
+                  }
+                ]
+              },
+              "unit": "celsius"
+            },
+            "overrides": []
+          },
+          "gridPos": {
+            "h": 4,
+            "w": 3,
+            "x": 21,
+            "y": 7
+          },
+          "id": 59,
+          "options": {
+            "colorMode": "value",
+            "graphMode": "area",
+            "justifyMode": "auto",
+            "orientation": "auto",
+            "reduceOptions": {
+              "calcs": [
+                "lastNotNull"
+              ],
+              "fields": "",
+              "values": false
+            },
+            "textMode": "auto"
+          },
+          "pluginVersion": "8.4.2",
+          "targets": [
+            {
+              "database": "f12019",
+              "datasource": {
+                "type": "grafana-azure-data-explorer-datasource",
+                "uid": "${DS_AZURE_DATA EXPLORER DATASOURCE}"
+              },
+              "expression": {
+                "groupBy": {
+                  "expressions": [],
+                  "type": "and"
+                },
+                "reduce": {
+                  "expressions": [],
+                  "type": "and"
+                },
+                "where": {
+                  "expressions": [],
+                  "type": "and"
+                }
+              },
+              "pluginVersion": "3.7.0-beta1",
+              "query": "\r\nSession\r\n| extend ingestionTime = ingestion_time() \r\n| where  $__timeFilter(ingestionTime)\r\n| order by ingestionTime , SessionTime \r\n| take 1 \r\n| project TrackTemp ",
+              "querySource": "raw",
+              "rawMode": true,
+              "refId": "A",
+              "resultFormat": "table"
+            }
+          ],
+          "title": "Track Temp",
+          "type": "stat"
+        }
+      ],
+      "title": "Session Details",
+      "type": "row"
+    },
+    {
+      "collapsed": false,
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 7
+      },
+      "id": 38,
+      "panels": [],
+      "title": "Car",
+      "type": "row"
+    },
+    {
+      "description": "",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "displayName": "Speed",
+          "mappings": [],
+          "max": 400,
+          "min": 0,
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "#EF843C",
+                "value": 250
+              },
+              {
+                "color": "dark-red",
+                "value": 350
+              }
+            ]
+          },
+          "unit": "velocitykmh"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 10,
+        "x": 0,
+        "y": 8
+      },
+      "id": 2,
+      "options": {
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showThresholdLabels": true,
+        "showThresholdMarkers": true
+      },
+      "pluginVersion": "8.4.2",
+      "targets": [
+        {
+          "database": "f12019",
+          "datasource": {
+            "type": "grafana-azure-data-explorer-datasource",
+            "uid": "${DS_AZURE_DATA EXPLORER DATASOURCE}"
+          },
+          "expression": {
+            "groupBy": {
+              "expressions": [],
+              "type": "and"
+            },
+            "reduce": {
+              "expressions": [],
+              "type": "and"
+            },
+            "where": {
+              "expressions": [],
+              "type": "and"
+            }
+          },
+          "pluginVersion": "3.7.0-beta1",
+          "query": "CarTelemetry\r\n| extend ingestionTime = ingestion_time() \r\n| where VehicleIndex == PlayerCarIndex and $__timeFilter(ingestionTime)\r\n| order by ingestionTime , SessionTime \r\n| take 1 \r\n| project Speed",
+          "querySource": "raw",
+          "rawMode": true,
+          "refId": "A",
+          "resultFormat": "table"
+        }
+      ],
+      "title": "Speed",
+      "type": "gauge"
+    },
+    {
+      "description": "",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "continuous-GrYlRd"
+          },
+          "mappings": [],
+          "max": 15000,
+          "min": 0,
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "rotrpm"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 14,
+        "x": 10,
+        "y": 8
+      },
+      "id": 4,
+      "options": {
+        "displayMode": "lcd",
+        "orientation": "horizontal",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showUnfilled": true
+      },
+      "pluginVersion": "8.4.2",
+      "targets": [
+        {
+          "database": "f12019",
+          "datasource": {
+            "type": "grafana-azure-data-explorer-datasource",
+            "uid": "${DS_AZURE_DATA EXPLORER DATASOURCE}"
+          },
+          "expression": {
+            "groupBy": {
+              "expressions": [],
+              "type": "and"
+            },
+            "reduce": {
+              "expressions": [],
+              "type": "and"
+            },
+            "where": {
+              "expressions": [],
+              "type": "and"
+            }
+          },
+          "pluginVersion": "3.7.0-beta1",
+          "query": "CarTelemetry\r\n| extend ingestionTime = ingestion_time() \r\n| where VehicleIndex == PlayerCarIndex and $__timeFilter(ingestionTime)\r\n| order by ingestionTime , SessionTime \r\n| take 1 \r\n| project EngineRPM ",
+          "querySource": "raw",
+          "rawMode": true,
+          "refId": "A",
+          "resultFormat": "table"
+        }
+      ],
+      "title": "Engine",
+      "type": "bargauge"
+    },
+    {
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "yellow",
+                "value": null
+              }
+            ]
+          },
+          "unit": "none"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 4,
+        "w": 3,
+        "x": 0,
+        "y": 16
+      },
+      "id": 76,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "area",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "textMode": "auto"
+      },
+      "pluginVersion": "8.4.2",
+      "targets": [
+        {
+          "database": "f12019",
+          "datasource": {
+            "type": "grafana-azure-data-explorer-datasource",
+            "uid": "${DS_AZURE_DATA EXPLORER DATASOURCE}"
+          },
+          "expression": {
+            "groupBy": {
+              "expressions": [],
+              "type": "and"
+            },
+            "reduce": {
+              "expressions": [],
+              "type": "and"
+            },
+            "where": {
+              "expressions": [],
+              "type": "and"
+            }
+          },
+          "pluginVersion": "3.7.0-beta1",
+          "query": "CarTelemetry\r\n| extend ingestionTime = ingestion_time()\r\n| where VehicleIndex == PlayerCarIndex and $__timeFilter(ingestionTime)\r\n| order by ingestionTime , SessionTime \r\n|take 1\r\n| project Gear ",
+          "querySource": "raw",
+          "rawMode": true,
+          "refId": "A",
+          "resultFormat": "table"
+        }
+      ],
+      "title": "Gear",
+      "type": "stat"
+    },
+    {
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [
+            {
+              "options": {
+                "0": {
+                  "color": "green",
+                  "index": 0,
+                  "text": "Off"
+                },
+                "1": {
+                  "color": "orange",
+                  "index": 1,
+                  "text": "On"
+                }
+              },
+              "type": "value"
+            }
+          ],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 4,
+        "w": 3,
+        "x": 3,
+        "y": 16
+      },
+      "id": 70,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "area",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "textMode": "auto"
+      },
+      "pluginVersion": "8.4.2",
+      "targets": [
+        {
+          "database": "f12019",
+          "datasource": {
+            "type": "grafana-azure-data-explorer-datasource",
+            "uid": "${DS_AZURE_DATA EXPLORER DATASOURCE}"
+          },
+          "expression": {
+            "groupBy": {
+              "expressions": [],
+              "type": "and"
+            },
+            "reduce": {
+              "expressions": [],
+              "type": "and"
+            },
+            "where": {
+              "expressions": [],
+              "type": "and"
+            }
+          },
+          "pluginVersion": "3.7.0-beta1",
+          "query": "\r\nCarStatus\r\n| extend ingestionTime = ingestion_time()  \r\n| where  $__timeFilter(ingestionTime) and  VehicleIndex == PlayerCarIndex\r\n| order by ingestionTime , SessionTime\r\n| take 1 \r\n| project ABS  ",
+          "querySource": "raw",
+          "rawMode": true,
+          "refId": "A",
+          "resultFormat": "table"
+        }
+      ],
+      "title": "Anti lock brakes",
+      "type": "stat"
+    },
+    {
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [
+            {
+              "options": {
+                "0": {
+                  "color": "yellow",
+                  "index": 0,
+                  "text": "Off"
+                },
+                "1": {
+                  "color": "green",
+                  "index": 2,
+                  "text": "On"
+                },
+                "2": {
+                  "color": "orange",
+                  "index": 1,
+                  "text": "High"
+                }
+              },
+              "type": "value"
+            }
+          ],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 4,
+        "w": 3,
+        "x": 6,
+        "y": 16
+      },
+      "id": 71,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "area",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "textMode": "auto"
+      },
+      "pluginVersion": "8.4.2",
+      "targets": [
+        {
+          "database": "f12019",
+          "datasource": {
+            "type": "grafana-azure-data-explorer-datasource",
+            "uid": "${DS_AZURE_DATA EXPLORER DATASOURCE}"
+          },
+          "expression": {
+            "groupBy": {
+              "expressions": [],
+              "type": "and"
+            },
+            "reduce": {
+              "expressions": [],
+              "type": "and"
+            },
+            "where": {
+              "expressions": [],
+              "type": "and"
+            }
+          },
+          "pluginVersion": "3.7.0-beta1",
+          "query": "\r\nCarStatus\r\n| extend ingestionTime = ingestion_time()  \r\n| where  $__timeFilter(ingestionTime) and  VehicleIndex == PlayerCarIndex\r\n| order by ingestionTime , SessionTime\r\n| take 1 \r\n| project TractionControl ",
+          "querySource": "raw",
+          "rawMode": true,
+          "refId": "A",
+          "resultFormat": "table"
+        }
+      ],
+      "title": "Traction Control",
+      "type": "stat"
+    },
+    {
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              }
+            ]
+          },
+          "unit": "masskg"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 4,
+        "w": 3,
+        "x": 9,
+        "y": 16
+      },
+      "id": 72,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "area",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "textMode": "auto"
+      },
+      "pluginVersion": "8.4.2",
+      "targets": [
+        {
+          "database": "f12019",
+          "datasource": {
+            "type": "grafana-azure-data-explorer-datasource",
+            "uid": "${DS_AZURE_DATA EXPLORER DATASOURCE}"
+          },
+          "expression": {
+            "groupBy": {
+              "expressions": [],
+              "type": "and"
+            },
+            "reduce": {
+              "expressions": [],
+              "type": "and"
+            },
+            "where": {
+              "expressions": [],
+              "type": "and"
+            }
+          },
+          "pluginVersion": "3.7.0-beta1",
+          "query": "\r\nCarStatus\r\n| extend ingestionTime = ingestion_time()  \r\n| where  $__timeFilter(ingestionTime) and  VehicleIndex == PlayerCarIndex\r\n| order by ingestionTime , SessionTime\r\n| take 1 \r\n| project FuelInTank  ",
+          "querySource": "raw",
+          "rawMode": true,
+          "refId": "A",
+          "resultFormat": "table"
+        }
+      ],
+      "title": "Fuel in Tank",
+      "type": "stat"
+    },
+    {
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              }
+            ]
+          },
+          "unit": "masskg"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 4,
+        "w": 3,
+        "x": 12,
+        "y": 16
+      },
+      "id": 73,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "area",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "textMode": "auto"
+      },
+      "pluginVersion": "8.4.2",
+      "targets": [
+        {
+          "database": "f12019",
+          "datasource": {
+            "type": "grafana-azure-data-explorer-datasource",
+            "uid": "${DS_AZURE_DATA EXPLORER DATASOURCE}"
+          },
+          "expression": {
+            "groupBy": {
+              "expressions": [],
+              "type": "and"
+            },
+            "reduce": {
+              "expressions": [],
+              "type": "and"
+            },
+            "where": {
+              "expressions": [],
+              "type": "and"
+            }
+          },
+          "pluginVersion": "3.7.0-beta1",
+          "query": "\r\nCarStatus\r\n| extend ingestionTime = ingestion_time()  \r\n| where  $__timeFilter(ingestionTime) and  VehicleIndex == PlayerCarIndex\r\n| order by ingestionTime , SessionTime\r\n| take 1 \r\n| project FuelCapacity   ",
+          "querySource": "raw",
+          "rawMode": true,
+          "refId": "A",
+          "resultFormat": "table"
+        }
+      ],
+      "title": "Fuel Capacity",
+      "type": "stat"
+    },
+    {
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              }
+            ]
+          },
+          "unit": "none"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 4,
+        "w": 3,
+        "x": 15,
+        "y": 16
+      },
+      "id": 74,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "area",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "textMode": "auto"
+      },
+      "pluginVersion": "8.4.2",
+      "targets": [
+        {
+          "database": "f12019",
+          "datasource": {
+            "type": "grafana-azure-data-explorer-datasource",
+            "uid": "${DS_AZURE_DATA EXPLORER DATASOURCE}"
+          },
+          "expression": {
+            "groupBy": {
+              "expressions": [],
+              "type": "and"
+            },
+            "reduce": {
+              "expressions": [],
+              "type": "and"
+            },
+            "where": {
+              "expressions": [],
+              "type": "and"
+            }
+          },
+          "pluginVersion": "3.7.0-beta1",
+          "query": "\r\nCarStatus\r\n| extend ingestionTime = ingestion_time()  \r\n| where  $__timeFilter(ingestionTime) and  VehicleIndex == PlayerCarIndex\r\n| order by ingestionTime , SessionTime\r\n| take 1 \r\n| project FuelRemainingLaps    ",
+          "querySource": "raw",
+          "rawMode": true,
+          "refId": "A",
+          "resultFormat": "table"
+        }
+      ],
+      "title": "Fuel Remaining Laps",
+      "type": "stat"
+    },
+    {
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [
+            {
+              "options": {
+                "0": {
+                  "color": "yellow",
+                  "index": 0,
+                  "text": "Not allowed"
+                },
+                "1": {
+                  "color": "orange",
+                  "index": 1,
+                  "text": "Allowed"
+                },
+                "-1": {
+                  "color": "purple",
+                  "index": 2,
+                  "text": "unknown"
+                }
+              },
+              "type": "value"
+            }
+          ],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              }
+            ]
+          },
+          "unit": "none"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 4,
+        "w": 3,
+        "x": 18,
+        "y": 16
+      },
+      "id": 75,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "area",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "textMode": "auto"
+      },
+      "pluginVersion": "8.4.2",
+      "targets": [
+        {
+          "database": "f12019",
+          "datasource": {
+            "type": "grafana-azure-data-explorer-datasource",
+            "uid": "${DS_AZURE_DATA EXPLORER DATASOURCE}"
+          },
+          "expression": {
+            "groupBy": {
+              "expressions": [],
+              "type": "and"
+            },
+            "reduce": {
+              "expressions": [],
+              "type": "and"
+            },
+            "where": {
+              "expressions": [],
+              "type": "and"
+            }
+          },
+          "pluginVersion": "3.7.0-beta1",
+          "query": "\r\nCarStatus\r\n| extend ingestionTime = ingestion_time()  \r\n| where  $__timeFilter(ingestionTime) and  VehicleIndex == PlayerCarIndex\r\n| order by ingestionTime , SessionTime\r\n| take 1 \r\n| project DRSAllowed     ",
+          "querySource": "raw",
+          "rawMode": true,
+          "refId": "A",
+          "resultFormat": "table"
+        }
+      ],
+      "title": "DRS Allowed",
+      "type": "stat"
+    },
+    {
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [
+            {
+              "options": {
+                "0": {
+                  "color": "purple",
+                  "index": 0,
+                  "text": "none"
+                },
+                "1": {
+                  "color": "green",
+                  "index": 1,
+                  "text": "green"
+                },
+                "2": {
+                  "color": "blue",
+                  "index": 2,
+                  "text": "blue"
+                },
+                "3": {
+                  "color": "yellow",
+                  "index": 3,
+                  "text": "yellow"
+                },
+                "4": {
+                  "color": "red",
+                  "index": 4,
+                  "text": "red"
+                },
+                "-1": {
+                  "color": "purple",
+                  "index": 5,
+                  "text": "invalid/unknown"
+                }
+              },
+              "type": "value"
+            }
+          ],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              }
+            ]
+          },
+          "unit": "none"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 4,
+        "w": 3,
+        "x": 21,
+        "y": 16
+      },
+      "id": 77,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "area",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "textMode": "auto"
+      },
+      "pluginVersion": "8.4.2",
+      "targets": [
+        {
+          "database": "f12019",
+          "datasource": {
+            "type": "grafana-azure-data-explorer-datasource",
+            "uid": "${DS_AZURE_DATA EXPLORER DATASOURCE}"
+          },
+          "expression": {
+            "groupBy": {
+              "expressions": [],
+              "type": "and"
+            },
+            "reduce": {
+              "expressions": [],
+              "type": "and"
+            },
+            "where": {
+              "expressions": [],
+              "type": "and"
+            }
+          },
+          "pluginVersion": "3.7.0-beta1",
+          "query": "\r\nCarStatus\r\n| extend ingestionTime = ingestion_time()  \r\n| where  $__timeFilter(ingestionTime) and  VehicleIndex == PlayerCarIndex\r\n| order by ingestionTime , SessionTime\r\n| take 1 \r\n| project VehicleFIAFlags       ",
+          "querySource": "raw",
+          "rawMode": true,
+          "refId": "A",
+          "resultFormat": "table"
+        }
+      ],
+      "title": "FIA Flags",
+      "type": "stat"
+    },
+    {
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "percentage",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "yellow",
+                "value": 40
+              },
+              {
+                "color": "orange",
+                "value": 60
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "percent"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 7,
+        "w": 24,
+        "x": 0,
+        "y": 20
+      },
+      "id": 78,
+      "options": {
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "/.*/",
+          "values": false
+        },
+        "showThresholdLabels": false,
+        "showThresholdMarkers": true
+      },
+      "pluginVersion": "8.4.2",
+      "targets": [
+        {
+          "database": "f12019",
+          "datasource": {
+            "type": "grafana-azure-data-explorer-datasource",
+            "uid": "${DS_AZURE_DATA EXPLORER DATASOURCE}"
+          },
+          "expression": {
+            "groupBy": {
+              "expressions": [],
+              "type": "and"
+            },
+            "reduce": {
+              "expressions": [],
+              "type": "and"
+            },
+            "where": {
+              "expressions": [],
+              "type": "and"
+            }
+          },
+          "pluginVersion": "3.6.1",
+          "query": "CarStatus\r\n| extend ingestionTime = ingestion_time() \r\n| where $__timeFilter(ingestionTime) and VehicleIndex == PlayerCarIndex \r\n| order by ingestionTime, SessionTime \r\n| take 1\r\n| project EngineDamage , GearBoxDamage ,FLWingDamage , FRWingDamage , RearWingDamage  ",
+          "querySource": "raw",
+          "rawMode": true,
+          "refId": "A",
+          "resultFormat": "table"
+        }
+      ],
+      "title": "Damage",
+      "type": "gauge"
+    },
+    {
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 20,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "lineInterpolation": "stepBefore",
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "auto",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 0,
+        "y": 27
+      },
+      "id": 8,
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom"
+        },
+        "tooltip": {
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "targets": [
+        {
+          "database": "f12019",
+          "datasource": {
+            "type": "grafana-azure-data-explorer-datasource",
+            "uid": "${DS_AZURE_DATA EXPLORER DATASOURCE}"
+          },
+          "expression": {
+            "from": {
+              "property": {
+                "name": "CarTelemetry",
+                "type": "string"
+              },
+              "type": "property"
+            },
+            "groupBy": {
+              "expressions": [],
+              "type": "and"
+            },
+            "reduce": {
+              "expressions": [],
+              "type": "and"
+            },
+            "where": {
+              "expressions": [],
+              "type": "and"
+            }
+          },
+          "pluginVersion": "3.7.0-beta1",
+          "query": "CarTelemetry\r\n| extend ingestionTime = ingestion_time()\r\n| where VehicleIndex == PlayerCarIndex and $__timeFilter(ingestionTime)\r\n| order by ingestionTime , SessionTime \r\n| project Gear , ingestionTime\r\n",
+          "querySource": "raw",
+          "rawMode": true,
+          "refId": "Gear",
+          "resultFormat": "time_series"
+        },
+        {
+          "database": "f12019",
+          "datasource": {
+            "type": "grafana-azure-data-explorer-datasource",
+            "uid": "${DS_AZURE_DATA EXPLORER DATASOURCE}"
+          },
+          "expression": {
+            "from": {
+              "property": {
+                "name": "CarTelemetry",
+                "type": "string"
+              },
+              "type": "property"
+            },
+            "groupBy": {
+              "expressions": [],
+              "type": "and"
+            },
+            "reduce": {
+              "expressions": [],
+              "type": "and"
+            },
+            "where": {
+              "expressions": [],
+              "type": "and"
+            }
+          },
+          "hide": false,
+          "pluginVersion": "3.7.0-beta1",
+          "query": "CarTelemetry\r\n| extend ingestionTime = ingestion_time()\r\n| where VehicleIndex == PlayerCarIndex and $__timeFilter(ingestionTime)\r\n| order by ingestionTime , SessionTime \r\n| project Clutch  , ingestionTime\r\n",
+          "querySource": "raw",
+          "rawMode": true,
+          "refId": "Clutch",
+          "resultFormat": "time_series"
+        }
+      ],
+      "title": "Gear & Clutch",
+      "type": "timeseries"
+    },
+    {
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "continuous-BlYlRd"
+          },
+          "custom": {
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 21,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "lineInterpolation": "stepBefore",
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "auto",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "degree"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 12,
+        "y": 27
+      },
+      "id": 14,
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom"
+        },
+        "tooltip": {
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "targets": [
+        {
+          "database": "f12019",
+          "datasource": {
+            "type": "grafana-azure-data-explorer-datasource",
+            "uid": "${DS_AZURE_DATA EXPLORER DATASOURCE}"
+          },
+          "expression": {
+            "groupBy": {
+              "expressions": [],
+              "type": "and"
+            },
+            "reduce": {
+              "expressions": [],
+              "type": "and"
+            },
+            "where": {
+              "expressions": [],
+              "type": "and"
+            }
+          },
+          "pluginVersion": "3.7.0-beta1",
+          "query": "CarTelemetry\r\n| extend ingestionTime = ingestion_time()\r\n| where VehicleIndex == PlayerCarIndex and $__timeFilter(ingestionTime)\r\n| order by ingestionTime , SessionTime \r\n| project Steering , ingestionTime\r\n",
+          "querySource": "raw",
+          "rawMode": true,
+          "refId": "A",
+          "resultFormat": "time_series"
+        }
+      ],
+      "title": "Steering",
+      "type": "timeseries"
+    },
+    {
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 0,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "lineInterpolation": "linear",
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "auto",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 0,
+        "y": 35
+      },
+      "id": 6,
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom"
+        },
+        "tooltip": {
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "pluginVersion": "8.4.1",
+      "targets": [
+        {
+          "database": "f12019",
+          "datasource": {
+            "type": "grafana-azure-data-explorer-datasource",
+            "uid": "${DS_AZURE_DATA EXPLORER DATASOURCE}"
+          },
+          "expression": {
+            "from": {
+              "property": {
+                "name": "CarTelemetry",
+                "type": "string"
+              },
+              "type": "property"
+            },
+            "groupBy": {
+              "expressions": [],
+              "type": "and"
+            },
+            "reduce": {
+              "expressions": [],
+              "type": "and"
+            },
+            "where": {
+              "expressions": [],
+              "type": "and"
+            }
+          },
+          "pluginVersion": "3.7.0-beta1",
+          "query": "CarTelemetry\r\n| extend ingestionTime = ingestion_time()\r\n| where VehicleIndex == PlayerCarIndex and $__timeFilter(ingestionTime)\r\n| order by ingestionTime , SessionTime \r\n| project ingestionTime, Brake\r\n",
+          "querySource": "raw",
+          "rawMode": true,
+          "refId": "Throttle",
+          "resultFormat": "time_series"
+        },
+        {
+          "database": "f12019",
+          "datasource": {
+            "type": "grafana-azure-data-explorer-datasource",
+            "uid": "${DS_AZURE_DATA EXPLORER DATASOURCE}"
+          },
+          "expression": {
+            "groupBy": {
+              "expressions": [],
+              "type": "and"
+            },
+            "reduce": {
+              "expressions": [],
+              "type": "and"
+            },
+            "where": {
+              "expressions": [],
+              "type": "and"
+            }
+          },
+          "hide": false,
+          "pluginVersion": "3.6.1",
+          "query": "CarTelemetry\r\n| extend ingestionTime = ingestion_time()\r\n| where VehicleIndex == PlayerCarIndex and $__timeFilter(ingestionTime)\r\n| order by ingestionTime , SessionTime \r\n| project ingestionTime, Throttle \r\n",
+          "querySource": "raw",
+          "rawMode": true,
+          "refId": "A",
+          "resultFormat": "time_series"
+        }
+      ],
+      "title": "Throttle & Brake",
+      "type": "timeseries"
+    },
+    {
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "continuous-BlYlRd"
+          },
+          "custom": {
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 0,
+            "gradientMode": "scheme",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "lineInterpolation": "stepAfter",
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "auto",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 12,
+        "y": 35
+      },
+      "id": 18,
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom"
+        },
+        "tooltip": {
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "targets": [
+        {
+          "database": "f12019",
+          "datasource": {
+            "type": "grafana-azure-data-explorer-datasource",
+            "uid": "${DS_AZURE_DATA EXPLORER DATASOURCE}"
+          },
+          "expression": {
+            "groupBy": {
+              "expressions": [],
+              "type": "and"
+            },
+            "reduce": {
+              "expressions": [],
+              "type": "and"
+            },
+            "where": {
+              "expressions": [],
+              "type": "and"
+            }
+          },
+          "pluginVersion": "3.7.0-beta1",
+          "query": "CarTelemetry\r\n| extend ingestionTime = ingestion_time()\r\n| where VehicleIndex == PlayerCarIndex and $__timeFilter(ingestionTime)\r\n| order by ingestionTime , SessionTime \r\n| project EngineRPM , ingestionTime\r\n",
+          "querySource": "raw",
+          "rawMode": true,
+          "refId": "A",
+          "resultFormat": "time_series"
+        },
+        {
+          "database": "f12019",
+          "datasource": {
+            "type": "grafana-azure-data-explorer-datasource",
+            "uid": "${DS_AZURE_DATA EXPLORER DATASOURCE}"
+          },
+          "expression": {
+            "groupBy": {
+              "expressions": [],
+              "type": "and"
+            },
+            "reduce": {
+              "expressions": [],
+              "type": "and"
+            },
+            "where": {
+              "expressions": [],
+              "type": "and"
+            }
+          },
+          "hide": false,
+          "pluginVersion": "3.7.0-beta1",
+          "query": "CarTelemetry\r\n| extend ingestionTime = ingestion_time()\r\n| where VehicleIndex == PlayerCarIndex and $__timeFilter(ingestionTime)\r\n| order by ingestionTime , SessionTime \r\n| project Speed   , ingestionTime\r\n",
+          "querySource": "raw",
+          "rawMode": true,
+          "refId": "B",
+          "resultFormat": "time_series"
+        }
+      ],
+      "title": "Engine RPM & Speed",
+      "type": "timeseries"
+    },
+    {
+      "cards": {},
+      "color": {
+        "cardColor": "#b4ff00",
+        "colorScale": "sqrt",
+        "colorScheme": "interpolateOranges",
+        "exponent": 0.5,
+        "mode": "spectrum"
+      },
+      "dataFormat": "timeseries",
+      "gridPos": {
+        "h": 8,
+        "w": 24,
+        "x": 0,
+        "y": 43
+      },
+      "heatmap": {},
+      "hideZeroBuckets": false,
+      "highlightCards": true,
+      "id": 82,
+      "legend": {
+        "show": false
+      },
+      "reverseYBuckets": false,
+      "targets": [
+        {
+          "database": "f12019",
+          "datasource": {
+            "type": "grafana-azure-data-explorer-datasource",
+            "uid": "${DS_AZURE_DATA EXPLORER DATASOURCE}"
+          },
+          "expression": {
+            "groupBy": {
+              "expressions": [],
+              "type": "and"
+            },
+            "reduce": {
+              "expressions": [],
+              "type": "and"
+            },
+            "where": {
+              "expressions": [],
+              "type": "and"
+            }
+          },
+          "pluginVersion": "3.6.1",
+          "query": "CarTelemetry\r\n| extend ingestionTime = ingestion_time()\r\n| where VehicleIndex == PlayerCarIndex and $__timeFilter(ingestionTime)\r\n| order by ingestionTime , SessionTime \r\n| project EngineTemp  , ingestionTime\r\n",
+          "querySource": "raw",
+          "rawMode": true,
+          "refId": "A",
+          "resultFormat": "time_series"
+        }
+      ],
+      "title": "Engine Temperature",
+      "tooltip": {
+        "show": true,
+        "showHistogram": false
+      },
+      "type": "heatmap",
+      "xAxis": {
+        "show": true
+      },
+      "yAxis": {
+        "format": "celsius",
+        "logBase": 1,
+        "show": true
+      },
+      "yBucketBound": "auto"
+    },
+    {
+      "collapsed": false,
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 51
+      },
+      "id": 64,
+      "panels": [],
+      "title": "Tyres",
+      "type": "row"
+    },
+    {
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [
+            {
+              "options": {
+                "7": {
+                  "color": "blue",
+                  "index": 3,
+                  "text": "inter"
+                },
+                "8": {
+                  "color": "purple",
+                  "index": 4,
+                  "text": "wet"
+                },
+                "16": {
+                  "color": "yellow",
+                  "index": 0,
+                  "text": "soft"
+                },
+                "17": {
+                  "color": "green",
+                  "index": 1,
+                  "text": "medium"
+                },
+                "18": {
+                  "color": "red",
+                  "index": 2,
+                  "text": "hard"
+                }
+              },
+              "type": "value"
+            }
+          ],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 11,
+        "w": 3,
+        "x": 0,
+        "y": 52
+      },
+      "id": 66,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "area",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "textMode": "auto"
+      },
+      "pluginVersion": "8.4.2",
+      "targets": [
+        {
+          "database": "f12019",
+          "datasource": {
+            "type": "grafana-azure-data-explorer-datasource",
+            "uid": "${DS_AZURE_DATA EXPLORER DATASOURCE}"
+          },
+          "expression": {
+            "groupBy": {
+              "expressions": [],
+              "type": "and"
+            },
+            "reduce": {
+              "expressions": [],
+              "type": "and"
+            },
+            "where": {
+              "expressions": [],
+              "type": "and"
+            }
+          },
+          "pluginVersion": "3.6.1",
+          "query": "CarStatus\r\n| extend ingestionTime = ingestion_time() \r\n| where $__timeFilter(ingestionTime) and VehicleIndex == PlayerCarIndex \r\n| order by ingestionTime, SessionTime \r\n| take 1\r\n| project TyreVisualCompound\r\n",
+          "querySource": "raw",
+          "rawMode": true,
+          "refId": "A",
+          "resultFormat": "table"
+        }
+      ],
+      "title": "Tyre Compound",
+      "type": "stat"
+    },
+    {
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "percentage",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "yellow",
+                "value": 40
+              },
+              {
+                "color": "orange",
+                "value": 60
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "percent"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 11,
+        "w": 10,
+        "x": 3,
+        "y": 52
+      },
+      "id": 68,
+      "options": {
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "/.*/",
+          "values": false
+        },
+        "showThresholdLabels": false,
+        "showThresholdMarkers": true
+      },
+      "pluginVersion": "8.4.2",
+      "targets": [
+        {
+          "database": "f12019",
+          "datasource": {
+            "type": "grafana-azure-data-explorer-datasource",
+            "uid": "${DS_AZURE_DATA EXPLORER DATASOURCE}"
+          },
+          "expression": {
+            "groupBy": {
+              "expressions": [],
+              "type": "and"
+            },
+            "reduce": {
+              "expressions": [],
+              "type": "and"
+            },
+            "where": {
+              "expressions": [],
+              "type": "and"
+            }
+          },
+          "pluginVersion": "3.6.1",
+          "query": "CarStatus\r\n| extend ingestionTime = ingestion_time() \r\n| where $__timeFilter(ingestionTime) and VehicleIndex == PlayerCarIndex \r\n| order by ingestionTime, SessionTime \r\n| take 1\r\n| project FLTyreWear, FRTyreWear, RLTyreWear , RRTyreWear ",
+          "querySource": "raw",
+          "rawMode": true,
+          "refId": "A",
+          "resultFormat": "table"
+        }
+      ],
+      "title": "Tyre Wear",
+      "type": "gauge"
+    },
+    {
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "percentage",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "yellow",
+                "value": 40
+              },
+              {
+                "color": "orange",
+                "value": 60
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "percent"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 11,
+        "w": 11,
+        "x": 13,
+        "y": 52
+      },
+      "id": 69,
+      "options": {
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "/.*/",
+          "values": false
+        },
+        "showThresholdLabels": false,
+        "showThresholdMarkers": true
+      },
+      "pluginVersion": "8.4.2",
+      "targets": [
+        {
+          "database": "f12019",
+          "datasource": {
+            "type": "grafana-azure-data-explorer-datasource",
+            "uid": "${DS_AZURE_DATA EXPLORER DATASOURCE}"
+          },
+          "expression": {
+            "groupBy": {
+              "expressions": [],
+              "type": "and"
+            },
+            "reduce": {
+              "expressions": [],
+              "type": "and"
+            },
+            "where": {
+              "expressions": [],
+              "type": "and"
+            }
+          },
+          "pluginVersion": "3.6.1",
+          "query": "CarStatus\r\n| extend ingestionTime = ingestion_time() \r\n| where $__timeFilter(ingestionTime) and VehicleIndex == PlayerCarIndex \r\n| order by ingestionTime, SessionTime \r\n| take 1\r\n| project FLTyreDamage , FRTyreDamage , RLTyreDamage  , RRTyreDamage ",
+          "querySource": "raw",
+          "rawMode": true,
+          "refId": "A",
+          "resultFormat": "table"
+        }
+      ],
+      "title": "Tyre Damage",
+      "type": "gauge"
+    },
+    {
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 0,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "lineInterpolation": "linear",
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "auto",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "min": 5,
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "pressurepsi"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 0,
+        "y": 63
+      },
+      "id": 20,
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom"
+        },
+        "tooltip": {
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "targets": [
+        {
+          "database": "f12019",
+          "datasource": {
+            "type": "grafana-azure-data-explorer-datasource",
+            "uid": "${DS_AZURE_DATA EXPLORER DATASOURCE}"
+          },
+          "expression": {
+            "groupBy": {
+              "expressions": [],
+              "type": "and"
+            },
+            "reduce": {
+              "expressions": [],
+              "type": "and"
+            },
+            "where": {
+              "expressions": [],
+              "type": "and"
+            }
+          },
+          "pluginVersion": "3.7.0-beta1",
+          "query": "CarTelemetry\r\n| extend ingestionTime = ingestion_time()\r\n| where $__timeFilter(ingestionTime) and VehicleIndex == PlayerCarIndex \r\n| order by ingestionTime , SessionTime \r\n| project FLTyrePressure,ingestionTime\r\n",
+          "querySource": "raw",
+          "rawMode": true,
+          "refId": "A",
+          "resultFormat": "time_series"
+        },
+        {
+          "database": "f12019",
+          "datasource": {
+            "type": "grafana-azure-data-explorer-datasource",
+            "uid": "${DS_AZURE_DATA EXPLORER DATASOURCE}"
+          },
+          "expression": {
+            "groupBy": {
+              "expressions": [],
+              "type": "and"
+            },
+            "reduce": {
+              "expressions": [],
+              "type": "and"
+            },
+            "where": {
+              "expressions": [],
+              "type": "and"
+            }
+          },
+          "hide": false,
+          "pluginVersion": "3.6.1",
+          "query": "CarTelemetry\r\n| extend ingestionTime = ingestion_time()\r\n| where $__timeFilter(ingestionTime) and VehicleIndex == PlayerCarIndex \r\n| order by ingestionTime , SessionTime \r\n| project FRTyrePressure, ingestionTime\r\n",
+          "querySource": "raw",
+          "rawMode": true,
+          "refId": "B",
+          "resultFormat": "time_series"
+        },
+        {
+          "database": "f12019",
+          "datasource": {
+            "type": "grafana-azure-data-explorer-datasource",
+            "uid": "${DS_AZURE_DATA EXPLORER DATASOURCE}"
+          },
+          "expression": {
+            "groupBy": {
+              "expressions": [],
+              "type": "and"
+            },
+            "reduce": {
+              "expressions": [],
+              "type": "and"
+            },
+            "where": {
+              "expressions": [],
+              "type": "and"
+            }
+          },
+          "hide": false,
+          "pluginVersion": "3.6.1",
+          "query": "CarTelemetry\r\n| extend ingestionTime = ingestion_time()\r\n| where $__timeFilter(ingestionTime) and VehicleIndex == PlayerCarIndex \r\n| order by ingestionTime , SessionTime \r\n| project RLTyrePressure, ingestionTime\r\n",
+          "querySource": "raw",
+          "rawMode": true,
+          "refId": "C",
+          "resultFormat": "time_series"
+        },
+        {
+          "database": "f12019",
+          "datasource": {
+            "type": "grafana-azure-data-explorer-datasource",
+            "uid": "${DS_AZURE_DATA EXPLORER DATASOURCE}"
+          },
+          "expression": {
+            "groupBy": {
+              "expressions": [],
+              "type": "and"
+            },
+            "reduce": {
+              "expressions": [],
+              "type": "and"
+            },
+            "where": {
+              "expressions": [],
+              "type": "and"
+            }
+          },
+          "hide": false,
+          "pluginVersion": "3.6.1",
+          "query": "CarTelemetry\r\n| extend ingestionTime = ingestion_time()\r\n| where $__timeFilter(ingestionTime) and VehicleIndex == PlayerCarIndex \r\n| order by ingestionTime , SessionTime \r\n| project RRTyrePressure, ingestionTime\r\n",
+          "querySource": "raw",
+          "rawMode": true,
+          "refId": "D",
+          "resultFormat": "time_series"
+        }
+      ],
+      "title": "Tyre Pressure",
+      "type": "timeseries"
+    },
+    {
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 0,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "lineInterpolation": "linear",
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "auto",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "celsius"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 12,
+        "y": 63
+      },
+      "id": 79,
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom"
+        },
+        "tooltip": {
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "targets": [
+        {
+          "database": "f12019",
+          "datasource": {
+            "type": "grafana-azure-data-explorer-datasource",
+            "uid": "${DS_AZURE_DATA EXPLORER DATASOURCE}"
+          },
+          "expression": {
+            "groupBy": {
+              "expressions": [],
+              "type": "and"
+            },
+            "reduce": {
+              "expressions": [],
+              "type": "and"
+            },
+            "where": {
+              "expressions": [],
+              "type": "and"
+            }
+          },
+          "pluginVersion": "3.7.0-beta1",
+          "query": "CarTelemetry\r\n| extend ingestionTime = ingestion_time()\r\n| where $__timeFilter(ingestionTime) and VehicleIndex == PlayerCarIndex \r\n| order by ingestionTime , SessionTime \r\n| project FLTyreSurfaceTemp,ingestionTime\r\n",
+          "querySource": "raw",
+          "rawMode": true,
+          "refId": "A",
+          "resultFormat": "time_series"
+        },
+        {
+          "database": "f12019",
+          "datasource": {
+            "type": "grafana-azure-data-explorer-datasource",
+            "uid": "${DS_AZURE_DATA EXPLORER DATASOURCE}"
+          },
+          "expression": {
+            "groupBy": {
+              "expressions": [],
+              "type": "and"
+            },
+            "reduce": {
+              "expressions": [],
+              "type": "and"
+            },
+            "where": {
+              "expressions": [],
+              "type": "and"
+            }
+          },
+          "hide": false,
+          "pluginVersion": "3.6.1",
+          "query": "CarTelemetry\r\n| extend ingestionTime = ingestion_time()\r\n| where $__timeFilter(ingestionTime) and VehicleIndex == PlayerCarIndex \r\n| order by ingestionTime , SessionTime \r\n| project FRTyreSurfaceTemp,ingestionTime\r\n",
+          "querySource": "raw",
+          "rawMode": true,
+          "refId": "B",
+          "resultFormat": "time_series"
+        },
+        {
+          "database": "f12019",
+          "datasource": {
+            "type": "grafana-azure-data-explorer-datasource",
+            "uid": "${DS_AZURE_DATA EXPLORER DATASOURCE}"
+          },
+          "expression": {
+            "groupBy": {
+              "expressions": [],
+              "type": "and"
+            },
+            "reduce": {
+              "expressions": [],
+              "type": "and"
+            },
+            "where": {
+              "expressions": [],
+              "type": "and"
+            }
+          },
+          "hide": false,
+          "pluginVersion": "3.6.1",
+          "query": "CarTelemetry\r\n| extend ingestionTime = ingestion_time()\r\n| where $__timeFilter(ingestionTime) and VehicleIndex == PlayerCarIndex \r\n| order by ingestionTime , SessionTime \r\n| project RLTyreSurfaceTemp,ingestionTime\r\n",
+          "querySource": "raw",
+          "rawMode": true,
+          "refId": "C",
+          "resultFormat": "time_series"
+        },
+        {
+          "database": "f12019",
+          "datasource": {
+            "type": "grafana-azure-data-explorer-datasource",
+            "uid": "${DS_AZURE_DATA EXPLORER DATASOURCE}"
+          },
+          "expression": {
+            "groupBy": {
+              "expressions": [],
+              "type": "and"
+            },
+            "reduce": {
+              "expressions": [],
+              "type": "and"
+            },
+            "where": {
+              "expressions": [],
+              "type": "and"
+            }
+          },
+          "hide": false,
+          "pluginVersion": "3.6.1",
+          "query": "CarTelemetry\r\n| extend ingestionTime = ingestion_time()\r\n| where $__timeFilter(ingestionTime) and VehicleIndex == PlayerCarIndex \r\n| order by ingestionTime , SessionTime \r\n| project RRTyreSurfaceTemp,ingestionTime\r\n",
+          "querySource": "raw",
+          "rawMode": true,
+          "refId": "D",
+          "resultFormat": "time_series"
+        }
+      ],
+      "title": "Tyre Temperature",
+      "type": "timeseries"
+    },
+    {
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 0,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "lineInterpolation": "linear",
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "auto",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "percent"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 0,
+        "y": 71
+      },
+      "id": 80,
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom"
+        },
+        "tooltip": {
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "targets": [
+        {
+          "database": "f12019",
+          "datasource": {
+            "type": "grafana-azure-data-explorer-datasource",
+            "uid": "${DS_AZURE_DATA EXPLORER DATASOURCE}"
+          },
+          "expression": {
+            "groupBy": {
+              "expressions": [],
+              "type": "and"
+            },
+            "reduce": {
+              "expressions": [],
+              "type": "and"
+            },
+            "where": {
+              "expressions": [],
+              "type": "and"
+            }
+          },
+          "pluginVersion": "3.7.0-beta1",
+          "query": "CarStatus\r\n| extend ingestionTime = ingestion_time() \r\n| where $__timeFilter(ingestionTime) and VehicleIndex == PlayerCarIndex \r\n| order by ingestionTime, SessionTime \r\n| project ingestionTime, FLTyreWear ",
+          "querySource": "raw",
+          "rawMode": true,
+          "refId": "A",
+          "resultFormat": "time_series"
+        },
+        {
+          "database": "f12019",
+          "datasource": {
+            "type": "grafana-azure-data-explorer-datasource",
+            "uid": "${DS_AZURE_DATA EXPLORER DATASOURCE}"
+          },
+          "expression": {
+            "groupBy": {
+              "expressions": [],
+              "type": "and"
+            },
+            "reduce": {
+              "expressions": [],
+              "type": "and"
+            },
+            "where": {
+              "expressions": [],
+              "type": "and"
+            }
+          },
+          "hide": false,
+          "pluginVersion": "3.6.1",
+          "query": "CarStatus\r\n| extend ingestionTime = ingestion_time() \r\n| where $__timeFilter(ingestionTime) and VehicleIndex == PlayerCarIndex \r\n| order by ingestionTime, SessionTime \r\n| project ingestionTime  , FRTyreWear ",
+          "querySource": "raw",
+          "rawMode": true,
+          "refId": "B",
+          "resultFormat": "time_series"
+        },
+        {
+          "database": "f12019",
+          "datasource": {
+            "type": "grafana-azure-data-explorer-datasource",
+            "uid": "${DS_AZURE_DATA EXPLORER DATASOURCE}"
+          },
+          "expression": {
+            "groupBy": {
+              "expressions": [],
+              "type": "and"
+            },
+            "reduce": {
+              "expressions": [],
+              "type": "and"
+            },
+            "where": {
+              "expressions": [],
+              "type": "and"
+            }
+          },
+          "hide": false,
+          "pluginVersion": "3.6.1",
+          "query": "CarStatus\r\n| extend ingestionTime = ingestion_time() \r\n| where $__timeFilter(ingestionTime) and VehicleIndex == PlayerCarIndex \r\n| order by ingestionTime, SessionTime \r\n| project ingestionTime  , RLTyreWear ",
+          "querySource": "raw",
+          "rawMode": true,
+          "refId": "C",
+          "resultFormat": "time_series"
+        },
+        {
+          "database": "f12019",
+          "datasource": {
+            "type": "grafana-azure-data-explorer-datasource",
+            "uid": "${DS_AZURE_DATA EXPLORER DATASOURCE}"
+          },
+          "expression": {
+            "groupBy": {
+              "expressions": [],
+              "type": "and"
+            },
+            "reduce": {
+              "expressions": [],
+              "type": "and"
+            },
+            "where": {
+              "expressions": [],
+              "type": "and"
+            }
+          },
+          "hide": false,
+          "pluginVersion": "3.6.1",
+          "query": "CarStatus\r\n| extend ingestionTime = ingestion_time() \r\n| where $__timeFilter(ingestionTime) and VehicleIndex == PlayerCarIndex \r\n| order by ingestionTime, SessionTime \r\n| project ingestionTime  , RRTyreWear ",
+          "querySource": "raw",
+          "rawMode": true,
+          "refId": "D",
+          "resultFormat": "time_series"
+        }
+      ],
+      "title": "Tyre Wear",
+      "type": "timeseries"
+    },
+    {
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 0,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "lineInterpolation": "linear",
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "auto",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "percent"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 12,
+        "y": 71
+      },
+      "id": 16,
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom"
+        },
+        "tooltip": {
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "targets": [
+        {
+          "database": "f12019",
+          "datasource": {
+            "type": "grafana-azure-data-explorer-datasource",
+            "uid": "${DS_AZURE_DATA EXPLORER DATASOURCE}"
+          },
+          "expression": {
+            "groupBy": {
+              "expressions": [],
+              "type": "and"
+            },
+            "reduce": {
+              "expressions": [],
+              "type": "and"
+            },
+            "where": {
+              "expressions": [],
+              "type": "and"
+            }
+          },
+          "pluginVersion": "3.7.0-beta1",
+          "query": "CarStatus\r\n| extend ingestionTime = ingestion_time() \r\n| where $__timeFilter(ingestionTime) and VehicleIndex == PlayerCarIndex \r\n| order by ingestionTime, SessionTime \r\n| project ingestionTime, FLTyreDamage ",
+          "querySource": "raw",
+          "rawMode": true,
+          "refId": "A",
+          "resultFormat": "time_series"
+        },
+        {
+          "database": "f12019",
+          "datasource": {
+            "type": "grafana-azure-data-explorer-datasource",
+            "uid": "${DS_AZURE_DATA EXPLORER DATASOURCE}"
+          },
+          "expression": {
+            "groupBy": {
+              "expressions": [],
+              "type": "and"
+            },
+            "reduce": {
+              "expressions": [],
+              "type": "and"
+            },
+            "where": {
+              "expressions": [],
+              "type": "and"
+            }
+          },
+          "hide": false,
+          "pluginVersion": "3.6.1",
+          "query": "CarStatus\r\n| extend ingestionTime = ingestion_time() \r\n| where $__timeFilter(ingestionTime) and VehicleIndex == PlayerCarIndex \r\n| order by ingestionTime, SessionTime \r\n| project ingestionTime,FRTyreDamage ",
+          "querySource": "raw",
+          "rawMode": true,
+          "refId": "B",
+          "resultFormat": "time_series"
+        },
+        {
+          "database": "f12019",
+          "datasource": {
+            "type": "grafana-azure-data-explorer-datasource",
+            "uid": "${DS_AZURE_DATA EXPLORER DATASOURCE}"
+          },
+          "expression": {
+            "groupBy": {
+              "expressions": [],
+              "type": "and"
+            },
+            "reduce": {
+              "expressions": [],
+              "type": "and"
+            },
+            "where": {
+              "expressions": [],
+              "type": "and"
+            }
+          },
+          "hide": false,
+          "pluginVersion": "3.6.1",
+          "query": "CarStatus\r\n| extend ingestionTime = ingestion_time() \r\n| where $__timeFilter(ingestionTime) and VehicleIndex == PlayerCarIndex \r\n| order by ingestionTime, SessionTime \r\n| project ingestionTime,RLTyreDamage ",
+          "querySource": "raw",
+          "rawMode": true,
+          "refId": "C",
+          "resultFormat": "time_series"
+        },
+        {
+          "database": "f12019",
+          "datasource": {
+            "type": "grafana-azure-data-explorer-datasource",
+            "uid": "${DS_AZURE_DATA EXPLORER DATASOURCE}"
+          },
+          "expression": {
+            "groupBy": {
+              "expressions": [],
+              "type": "and"
+            },
+            "reduce": {
+              "expressions": [],
+              "type": "and"
+            },
+            "where": {
+              "expressions": [],
+              "type": "and"
+            }
+          },
+          "hide": false,
+          "pluginVersion": "3.6.1",
+          "query": "CarStatus\r\n| extend ingestionTime = ingestion_time() \r\n| where $__timeFilter(ingestionTime) and VehicleIndex == PlayerCarIndex \r\n| order by ingestionTime, SessionTime \r\n| project ingestionTime,RRTyreDamage ",
+          "querySource": "raw",
+          "rawMode": true,
+          "refId": "D",
+          "resultFormat": "time_series"
+        }
+      ],
+      "title": "Tyre Damage",
+      "type": "timeseries"
+    },
+    {
+      "collapsed": false,
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 79
+      },
+      "id": 85,
+      "panels": [],
+      "title": "Race",
+      "type": "row"
+    },
+    {
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "align": "auto",
+            "displayMode": "color-text"
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 20,
+        "w": 24,
+        "x": 0,
+        "y": 80
+      },
+      "id": 87,
+      "options": {
+        "footer": {
+          "fields": "",
+          "reducer": [
+            "sum"
+          ],
+          "show": false
+        },
+        "showHeader": true,
+        "sortBy": []
+      },
+      "pluginVersion": "8.4.2",
+      "targets": [
+        {
+          "database": "f12019",
+          "datasource": {
+            "type": "grafana-azure-data-explorer-datasource",
+            "uid": "${DS_AZURE_DATA EXPLORER DATASOURCE}"
+          },
+          "expression": {
+            "groupBy": {
+              "expressions": [],
+              "type": "and"
+            },
+            "reduce": {
+              "expressions": [],
+              "type": "and"
+            },
+            "where": {
+              "expressions": [],
+              "type": "and"
+            }
+          },
+          "pluginVersion": "3.6.1",
+          "query": "let participant = Participant\r\n| extend ingestionTime = ingestion_time() \r\n| where $__timeFilter(ingestionTime)\r\n| order by ingestionTime,SessionTime\r\n| take 20\r\n| project Name, VehicleIndex;\r\nLap\r\n| extend ingestionTime = ingestion_time() \r\n| where $__timeFilter(ingestionTime)\r\n| order by ingestionTime,SessionTime\r\n| take 20\r\n| join  kind=rightouter  participant on VehicleIndex\r\n| order by CarPosition asc\r\n| project CarPosition, Name, CurrentLapNum, GridPosition, CurrentLapTime, LastLapTime\r\n\r\n",
+          "querySource": "raw",
+          "rawMode": true,
+          "refId": "A",
+          "resultFormat": "table"
+        }
+      ],
+      "title": "Standings",
+      "type": "table"
+    }
+  ],
+  "refresh": "",
+  "schemaVersion": 35,
+  "style": "dark",
+  "tags": [],
+  "templating": {
+    "list": []
+  },
+  "time": {
+    "from": "now-5m",
+    "to": "now"
+  },
+  "timepicker": {
+    "refresh_intervals": [
+      "500ms",
+      "1s",
+      "5s",
+      "10s",
+      "30s",
+      "1m",
+      "5m",
+      "15m",
+      "30m",
+      "1h",
+      "2h",
+      "1d"
+    ]
+  },
+  "timezone": "",
+  "title": "F1 ADX Statistics",
+  "uid": "qEVSBmL7k",
+  "version": 26,
+  "weekStart": ""
+}
