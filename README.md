@@ -30,19 +30,19 @@ main.py - main module to start listening to udp stream, parse data & send it to 
 
 > scripts coming soon
 
-3. Create [Azure AD application registration] (https://docs.microsoft.com/en-us/azure/data-explorer/provision-azure-ad-app) and configure following properties in /kusto/ingest.js
+3. Create [Azure AD application registration](https://docs.microsoft.com/en-us/azure/data-explorer/provision-azure-ad-app) and configure following properties in /kusto/ingest.js
 > clusterpath, appid, appKey, apptenant, dbName 
 
 4. Install the [ADX Data Explorer Data Source](https://grafana.com/grafana/plugins/grafana-azure-data-explorer-datasource/) in your Grafana instance. Upload the grafana dashboard to the instance, and provide necessary conenction properties from Step #3.
 
-5. Start the F1 202x game, and turn on the UDP telemetry by providing UDP IP Address of your machine running python code. [Step by step instructions] (https://www.simracingtelemetry.com/help/F12020/)
+5. Start the F1 202x game, and turn on the UDP telemetry by providing UDP IP Address of your machine running python code. [Step by step instructions](https://www.simracingtelemetry.com/help/F12020/)
 > By default, the code listens on port 20777 (default port for F1), and 0.0.0.0 IP. You can change the values in server.py
 
 6. Start the python engine
 
 > python main.py
 
-7. Set the grafana dashboard to 1s or 500ms to visualize the real-time charts. You will need to change the min_refresh_interval to 1s/500ms via the [config] (https://grafana.com/docs/grafana/latest/administration/configuration/). 
+7. Set the grafana dashboard to 1s or 500ms to visualize the real-time charts. You will need to change the min_refresh_interval to 1s/500ms via the [config](https://grafana.com/docs/grafana/latest/administration/configuration/). 
 
 
 ## How to test F1 telemetry without running the game
@@ -60,12 +60,12 @@ Configure the following parameters inside send-pcap.py. Change the dst_ip to the
 After that run it with "python send-pcap.py" to replay udp stream.
 To start listening to udp, and send data to Kusto - run "python main.py"
 
-## Visualizations
+## Dashboard Visualizations
 
-![visuals](./images/Dashboard_1.png)
+![visuals1](./images/Dashboard_1.png)
 
-![visuals](./images/Dashboard_2.png)
+![visuals2](./images/Dashboard_2.png)
 
-![visuals](./images/Dashboard_4.png)
+![visuals3](./images/Dashboard_4.png)
 
-![visuals](./images/Dashboard_3.png)
+![visuals4](./images/Dashboard_3.png)
