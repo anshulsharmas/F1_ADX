@@ -62,10 +62,10 @@ To start listening to udp, and send data to Kusto - run "python main.py"
 
 ## Dashboard Visualizations
 
-![visuals1](./images/Dashboard_1.png)
+![visuals1](./images/dashboard_1.png)
 
-![visuals2](./images/Dashboard_2.png)
+![visuals2](./images/dashboard_2.png)
 
-![visuals3](./images/Dashboard_4.png)
+![visuals3](./images/dashboard_4.png)
 
-![visuals4](./images/Dashboard_3.png)
+![visuals4](./images/dashboard_3.png)
