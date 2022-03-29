@@ -26,9 +26,7 @@ main.py - main module to start listening to udp stream, parse data & send it to 
 
 > pip install -r requirements.txt
 
-2. Create ADX Cluster and a DB, run the scripts in /kusto/initialization/schema.kql to create necessary tables. Upload the data in /kusto/initialization/*.csv to corresponding tables.
-
-> /kusto/initialization/
+2. Create ADX Cluster and a DB, run the scripts in /kusto/initialization/schema.kql to create necessary tables. Upload the data in /kusto/initialization/data to corresponding tables.
 
 3. Create [Azure AD application registration](https://docs.microsoft.com/en-us/azure/data-explorer/provision-azure-ad-app) and configure following properties in /kusto/ingest.js
 > clusterpath, appid, appKey, apptenant, dbName 
