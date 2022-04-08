@@ -16,11 +16,11 @@ from azure.kusto.ingest import (
 ingest_total=0
 
 # replace with ADX Azure AD app credentials 
-clusterPath = ""
-appId = ""
-appKey = ""
-appTenant = ""
-dbName = ""
+clusterPath = "https://f1telemetry.southeastasia.kusto.windows.net"
+appId = "24a87192-8254-45ce-be8b-443d715a32ad"
+appKey = "23F7Q~DeGoIZsXNJYd1d53twzVkMQ6Rvk6dRm"
+appTenant = "72f988bf-86f1-41af-91ab-2d7cd011db47"
+dbName = "f1"
 tableName = ""
 
 csb = KustoConnectionStringBuilder.with_aad_application_key_authentication(

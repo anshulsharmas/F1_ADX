@@ -1,15 +1,15 @@
 
-.alter database f12019 policy streamingingestion enable; # replace f12019 with desired db name
+.alter database f1 policy streamingingestion enable; // f1 = database name
 
-.create table CarStatus (SessionUID: string, FrameIdentifier: long, SessionTime: real, PlayerCarIndex: int, VehicleIndex: int, TractionControl: int, ABS: int, FuelMix: int, FuelInTank: real, FuelCapacity: real, FuelRemainingLaps: real, MaxRPM: long, IdleRPM: long, MaxGears: int, DRSAllowed: int, FLTyreWear: int, FRTyreWear: int, RLTyreWear: int, RRTyreWear: int, ActualTyreCompound: int, TyreVisualCompound: int, FLTyreDamage: int, FRTyreDamage: int, RLTyreDamage: int, RRTyreDamage: int, FLWingDamage: int, FRWingDamage: int, RearWingDamage: int, EngineDamage: int, GearBoxDamage: int, VehicleFIAFlags: int); 
+.create table CarStatus (Timestamp: datetime ,SessionUID: string, FrameIdentifier: long, SessionTime: real, PlayerCarIndex: int, VehicleIndex: int, TractionControl: int, ABS: int, FuelMix: int, FuelInTank: real, FuelCapacity: real, FuelRemainingLaps: real, MaxRPM: long, IdleRPM: long, MaxGears: int, DRSAllowed: int, FLTyreWear: int, FRTyreWear: int, RLTyreWear: int, RRTyreWear: int, ActualTyreCompound: int, TyreVisualCompound: int, FLTyreDamage: int, FRTyreDamage: int, RLTyreDamage: int, RRTyreDamage: int, FLWingDamage: int, FRWingDamage: int, RearWingDamage: int, EngineDamage: int, GearBoxDamage: int, VehicleFIAFlags: int); 
 
-.create table CarTelemetry (SessionUID: string, FrameIdentifier: long, SessionTime: real, PlayerCarIndex: int, VehicleIndex: int, Speed: long, Throttle: real, Steering: real, Brake: real, Clutch: long, Gear: long, EngineRPM: long, DRSEnabled: long, RevLights: long, BrakeTemp: string, FLTyreSurfaceTemp: long, FRTyreSurfaceTemp: long, RLTyreSurfaceTemp: long, RRTyreSurfaceTemp: long, FLTyreInnerTemp: long, FRTyreInnerTemp: long, RLTyreInnerTemp: long, RRTyreInnerTemp: long, EngineTemp: long, FLTyrePressure: real, FRTyrePressure: real, RLTyrePressure: real, RRTyrePressure: real, FLDrivingSurface: long, FRDrivingSurface: long, RLDrivingSurface: long, RRDrivingSurface: long) ;
+.create table CarTelemetry (Timestamp: datetime ,SessionUID: string, FrameIdentifier: long, SessionTime: real, PlayerCarIndex: int, VehicleIndex: int, Speed: long, Throttle: real, Steering: real, Brake: real, Clutch: long, Gear: long, EngineRPM: long, DRSEnabled: long, RevLights: long, BrakeTemp: string, FLTyreSurfaceTemp: long, FRTyreSurfaceTemp: long, RLTyreSurfaceTemp: long, RRTyreSurfaceTemp: long, FLTyreInnerTemp: long, FRTyreInnerTemp: long, RLTyreInnerTemp: long, RRTyreInnerTemp: long, EngineTemp: long, FLTyrePressure: real, FRTyrePressure: real, RLTyrePressure: real, RRTyrePressure: real, FLDrivingSurface: long, FRDrivingSurface: long, RLDrivingSurface: long, RRDrivingSurface: long) ;
 
-.create table Lap (SessionUID: string, FrameIdentifier: long, SessionTime: real, PlayerCarIndex: int, VehicleIndex: int, LastLapTime: real, CurrentLapTime: real, BestLapTime: real, CarPosition: int, CurrentLapNum: int, CurrentLapInvalid: int, LapDistance: real, TotalDistance: real, GridPosition: int, PitStatus: int, TimePenalties: int, DriverStatus: int, ResultStatus: int) ;
+.create table Lap (Timestamp: datetime ,SessionUID: string, FrameIdentifier: long, SessionTime: real, PlayerCarIndex: int, VehicleIndex: int, LastLapTime: real, CurrentLapTime: real, BestLapTime: real, CarPosition: int, CurrentLapNum: int, CurrentLapInvalid: int, LapDistance: real, TotalDistance: real, GridPosition: int, PitStatus: int, TimePenalties: int, DriverStatus: int, ResultStatus: int) ;
 
-.create table Participant (SessionUID: string, FrameIdentifier: long, SessionTime: real, PlayerCarIndex: int, VehicleIndex: int, NumOfActiveCars: int, AIControlled: int, DriverId: int, TeamId: int, RaceNumber: int, Nationality: int, Name: string) ;
+.create table Participant (Timestamp: datetime ,SessionUID: string, FrameIdentifier: long, SessionTime: real, PlayerCarIndex: int, VehicleIndex: int, NumOfActiveCars: int, AIControlled: int, DriverId: int, TeamId: int, RaceNumber: int, Nationality: int, Name: string) ;
 
-.create table Session (SessionUID: string, FrameIdentifier: long, SessionTime: real, PlayerCarIndex: int, Weather: int, TrackTemp: int, AirTemp: int, TotalLaps: int, TrackId: int, TrackLength: long, SessionType: int, SessionDuration: long, SessionTimeLeft: long) ;
+.create table Session (Timestamp: datetime ,SessionUID: string, FrameIdentifier: long, SessionTime: real, PlayerCarIndex: int, Weather: int, TrackTemp: int, AirTemp: int, TotalLaps: int, TrackId: int, TrackLength: long, SessionType: int, SessionDuration: long, SessionTimeLeft: long) ;
 
 .create table Drivers (Id: int, Name: string) with (folder = "Lookup");
 
@@ -19,5 +19,4 @@
 
 .create table Tracks (Id: int, Name: string) with (folder = "Lookup");
 
-
-# upload data from the drivers, Nationality, teams, tracks csv into the corresponding lookup tables
+// upload data from the drivers, Nationality, teams, tracks csv into the corresponding lookup tables

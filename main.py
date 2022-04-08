@@ -1,8 +1,7 @@
 from xml.etree.ElementTree import tostring
 from f1_telemetry.server import get_telemetry
 from kusto.ingest import ingest_kusto
-import time
-
+from datetime import datetime
 
 batch_freq_high = 9 # 20 cars per packet * batch_freq_high(x) packets
 batch_freq_low = 2
@@ -23,6 +22,7 @@ def ingest_cartelemetrydata(packet, m_header):
     #print ("SUID ",  m_header.m_sessionUID)
     for idx,cartelemetrydata in enumerate(packet.m_carTelemetryData):
         data = [
+                            datetime.utcnow(),
                             m_header.m_sessionUID,
                             m_header.m_frameIdentifier,
                             m_header.m_sessionTime,
@@ -73,6 +73,7 @@ def ingest_sessiondata(sessiondatapacket, m_header):
     global ingest_sessiondataBuffer
     global ingest_sessiondataCnt
     data =[  
+            datetime.utcnow(),
             m_header.m_sessionUID,
             m_header.m_frameIdentifier,
             m_header.m_sessionTime,
@@ -102,6 +103,7 @@ def ingest_participantdata(packet, m_header):
     participantdataBuffer=""
     for idx, participantdata in enumerate(packet.m_participants):
         data =[
+                datetime.utcnow(),
                 m_header.m_sessionUID,
                 m_header.m_frameIdentifier,
                 m_header.m_sessionTime,
@@ -126,6 +128,7 @@ def ingest_lapdata(packet, m_header):
      
     for idx,lapdata in enumerate(packet.m_lapsData):
         data = [
+                            datetime.utcnow(),
                             m_header.m_sessionUID,
                             m_header.m_frameIdentifier,
                             m_header.m_sessionTime,
@@ -162,7 +165,8 @@ def ingest_carstatusdata(packet, m_header):
     global ingest_carstatusdataCnt
      
     for idx,carstatusdata in enumerate(packet.m_carStatusData):
-        data = [
+        data = [            
+                            datetime.utcnow(),
                             m_header.m_sessionUID,
                             m_header.m_frameIdentifier,
                             m_header.m_sessionTime,
