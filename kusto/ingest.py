@@ -20,7 +20,7 @@ clusterPath = ""
 appId = ""
 appKey = ""
 appTenant = ""
-dbName = ""
+dbName = "f1"
 tableName = ""
 
 csb = KustoConnectionStringBuilder.with_aad_application_key_authentication(

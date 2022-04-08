@@ -2,7 +2,7 @@ from scapy.all import *
 global src_ip, dst_ip
 src_ip = "192.168.10.149"
 dst_ip = "192.168.10.148" # change to local IP of your computer
-infile = "pcap/f1_session.pcap"
+infile = "/Downloads/f1pc.pcap"
 
 
 def my_send(rd, count=40000):
