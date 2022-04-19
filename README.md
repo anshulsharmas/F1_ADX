@@ -2,6 +2,8 @@
 
 The project aims to use Azure Data Explorer(ADX) to analyze Formula 1 telemetry data from F1 202x game (by Codemasters) running on Microsoft Xbox, Sony Playstation .
 
+ADX blog - https://techcommunity.microsoft.com/t5/azure-data-explorer-blog/f1-telemetry-analysis-with-azure-data-explorer-adx/ba-p/3283911
+
 ## Overview:
 
 ![Arch](./images/architecture.png)
